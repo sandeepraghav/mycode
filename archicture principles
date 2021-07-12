@@ -1,0 +1,658 @@
+Enterprise Architecture Policies and Guiding Principles
+
+Enterprise Architecture Policies |   Business Principles |   Information Principles |   Security Principles |   System Principles |   Technology Principles
+Enterprise architecture policies and principles guide technology advancements for the enterprise. They provide a set of governing statements which emphasize shared values, setting direction for design and the deployment of technology.
+Policy	Policy Overview	Policy Implementation	Notes
+ Solution Alignment	
+- Align solution designs to ‘North Stars’ (future state provided by the Architecture Planning team) where such exist; maximizing synergies, minimizing global costs and risks
+- Leverage Ecosystem Platform capabilities where at all possible (current and future state provided by the Architecture Planning team); part of ensuring a seamless consumer experience across the total Aetna ecosystem
+- Have knowledge of Enterprise Blueprints relevant to solution design (or participate in the weekly collaboration meetings)
+- Use designated enterprise components where available, including Ecosystem Platform capabilities
+- Discuss, record and manage deviations from policy as architecture exceptions (Level 2 is the Daily Risk Review meeting, Level 3 is the formal EA Governance process)
+- Participation in continued evolution of the ‘North Stars’ is encouraged through collaboration with the Architecture Planning team under Joe Arnold (nobody has all the answers in advance, future state keeps evolving)
+- Where desired, the Architecture Forensics team under Bob Bates is available to assist with a deep dive into current business processes and IT platforms
+ Sourcing of Data	
+- Align choice of data source (when multiple options) with Source of Record and Source of Truth designations in the Enterprise Blueprints (future state provided by the Architecture Planning team) where such exist
+- Do not use Systems of Insight as an operational data source; do not “write back updates”
+- Ensure that the data owner agrees with the intended data usage and that regulatory requirements are being met
+- Ensure visibility for data usage and data dependencies across the Aetna integration fabric (including caching, replication and duplication)
+- Have knowledge of ‘North Stars’ relevant to data sourcing design
+- Ensure appropriate dialog with the Data Usage Governance team (and/or use the EA integration leads as proxies)
+- Record data sourcing designs in the designated Enterprise Integration Repository
+- Discuss, record and manage deviations from policy as architecture exceptions (Level 2 is the Daily Risk Review meeting, Level 3 is the formal EA Governance process)
+- Participation in continued evolution of the ‘North Stars’ is encouraged through collaboration with the Architecture Planning team under Joe Arnold (nobody has all the answers in advance, future state keeps evolving)
+ Integration Patterns	
+- Use standard integration patterns (with built in security and identity characteristics)
+- Follow Global Identity standards
+- All cross-domain (incl. to 3rd party platforms) real time integrations must go through a managed API, with operational traffic management policies applied
+- Develop and operate business logic according to data affinity (rather than copy data)
+- Have knowledge of standard integration patterns and Global Identity standards
+- For non-standard integration patterns, ensure that security and global identity requirements are being met (through discussion with Global Security and the EA Integration Leads respectively)
+- Discuss, record and manage deviations from policy as architecture exceptions (Level 2 is the Daily Risk Review meeting, Level 3 is the formal EA Governance process)
+- Standard integration patterns are developed by the EA Integration Leads in collaboration with Global Security; input and participation from the broader architecture community is encouraged and welcome
+- Standard integration patterns have pre-approved security characteristics; Global Security assessment is generally not required for integrations using these patterns
+ Operational Stability	
+- Ensure that (non-functional) IT operational needs are met; globally for shared components (including enterprise services), locally for other parts of a solution or integration design
+- In cases where manual processes are impacted by a solution design, ensure that business operational concerns and needs are addressed
+- All cross-domain (incl. to 3rd party platforms) real time integrations must go through a managed API, with operational traffic management policies applied
+- Communicate capacity and stability impacts to the Infrastructure Engineering and IT Operations teams
+- Ensure that business owners accept operational risk in cases with business operational impact from a solution or integration design
+- Record non-functional characteristics as part of solution and integration designs in the designated Enterprise Documentation Repository (NEAR) and Integration Repository
+- Discuss, record and manage deviations from policy as architecture exceptions (Level 2 is the Daily Risk Review meeting, Level 3 is the formal EA Governance process)
+- Where desired, the Architecture Forensics team under Bob Bates is available to assist with a deep dive into current business processes and IT platforms
+ Documentation	
+- Ensure that current state documentation is always up to date
+- Ensure that solution and integration designs, as well as current state documentation, follow applicable documentation standards
+- Before release to production, update current state documentation for both Solution and Integration designs in the designated Enterprise Documentation Repository (NEAR)
+- During development, for in-flight work, share designs with cross team impact in the designated Program Design Repository; for designs with cross program impact share in the Enterprise Design Repository
+- Documentation standards are generally produced by EA and focus on segmentation and structure of content, not form or tool
+- Documentation standards cater to both development and operational needs
+- Programs can select a different Design Repository than the enterprise standard, but must also share designs with cross program impact in the Enterprise Design Repository
+- Participation in the continued evolution of the documentation standards is encouraged through collaboration with the Architecture Delivery team under Rob Baigert (as the nature of systems and platforms change, so must associated documentation)
+ Enterprise Capabilities	
+- Ensure that the design of enterprise components, aka components that will be used by multiple programs, follows applicable ‘North Stars’ (future state provided by the Architecture Planning team)
+- Ensure that enterprise needs are taken into account in solution and integration designs for enterprise components; known requirements will be provided by the EA teams (Architecture Planning as well as Delivery Architects on other programs) and by any business owners engaged in the discussions
+- Discuss, record and manage deviations from policy as architecture exceptions (Level 2 is the Daily Risk Review meeting, Level 3 is the formal EA Governance process)
+- If necessary log and follow up on technical debt and missing capabilities, including an active plan and timeline for elimination of the issue
+- The Architecture Planning team adjudicates what constitutes an Enterprise Component, based on current Enterprise Blueprints as well as known requirements from programs across all of Aetna
+- The first iterations of enterprise components can be (and are), when necessary, built with limited capabilities, but decisions should always be made with explicit knowledge of how current implementation deviates from known enterprise need
+
+===========================
+
+
+
+Principle	Statement of principle	Rationale	Implications
+ Comply with consistent standards and guidelines with Business Architecture modeling	This will ensure that a common depiction will be applied and increased understanding of our artifacts will occur.  Consistent standards, tools and common business reference will be applied to all business models.	> Ensures a common depiction and increased understanding of our artifacts, regardless of their type or the breadth of their view (Enterprise, Domain, or Business Unit).	
+> Business Process Modeling and formatting should be standardized across the enterprise through use of approved tools (currently, Websphere Business Modeler and Visio).
+> Multiple types of models may be utilized depending on the specifics of an engagement; however, a tool-kit should be available for guidance and consistency.
+> The APF (Aetna Process Framework) currently represents the common language/vocabulary to Aetna’s Business Processes and sub-processes which are to be referenced and utilized.
+ Follow a business process centric approach	Business Processes are foundational to Enterprise Business Architecture.  Subsequently all strategic IT solutions should align to business processes. This ensures a clearer understanding of the impact that a business strategy may trigger.	> Ensures that an enterprise/strategic execution of processes is articulated.
+> Ensures a clearer understanding of the impact that a business strategy may trigger.
+> Ensures IT solutions delivered are aligned to business processes.  
+> Promotes traceability and tracking of Business Needs.
+> Enables a logical decomposition and understanding of Business Needs and Expanded Business Needs to occur.	
+> APF (Aetna Process Framework) alignment, traceability and status must exist until the Business Need has been satisfied.
+> Traceability maintenance / ownership needs to occur throughout Aetna’s project life cycle.
+> Currently, traceability is a manual effort and not done consistently
+ Promote Traceability from Business Strategy	The initiation of traceability will begin with the Business Strategy and cascade through strategy implementation.  Traceability must be maintained as capabilities and business needs are aligned to programs, solutions, projects, business requirements and through point of realization.	
+>The initiation of traceability to components of the Business Strategy (capabilities, needs, projects) promotes the downstream measurement of strategy implementation.
+> Promotes accountability of strategy results.
+> Promotes sophisticated tracking mechanisms.
+> Enables a logical decomposition and association of strategy components.
+> Traceability is currently a manual effort via spreadsheets.
+> Linkage to downstream portions of traceability (Rational) must still be developed.
+> Traceability maintenance / ownership needs to occur throughout Aetna’s project life cycle.
+ Utilize a Strategic and Holistic Approach	A strategic and holistic approach to business architecture will be maintained to maximize business benefit.  Cross business capability/functionality, supporting an enterprise approach will be considered.  This will reduce the insular view of business function while enabling better decision making, reducing spend and increasing return on investments.	
+> The value of information is not always realized when it remains in isolated pockets. All opportunities must include business, domain and enterprise analysis for synergistic opportunities and examination of dependencies.
+> Business value, breadth and currency will be achieved by leveraging the broader view identified by industry standards, statistics and/or competitor analysis, when applicable.
+> Shared information promotes the effectiveness of business decision making throughout the enterprise.
+> Infrastructure and support services resulting from stovepipe planning and views are often duplicative and difficult to scale and/or adapt to change.
+> The cross business view supports an enterprise approach.  As business processes continue to change, it will be easier and quicker to adapt the IT infrastructure to facilitate this change.
+> Clear identification of the authoritative source areas and value-chain will be needed.
+> Acceptance that decisions could take longer to make and solutions could require more time to implement.
+> Business area or domain occasionally conceding their own preferences for the greater benefit of the ‘big-picture’.
+> Near term or immediate return on value may be overlooked with a particular business unit or domain need for IT solution.
+ Utilize the Enterprise Business Model	Provide a reference picture of the business that is a simplified view depicting business operations, constituents, business processes, products and services.   	> Reduces risk of process divergence, information currency and inconsistency.
+> Highlight points of shared enterprise versus market specific decisions.
+> Provides a reference point for business processes and assets across the enterprise.
+> Provides the vision of business capabilities and operations required to attain desired constituent experiences.
+> Presents a clear line-of-sight and strategic alignment for categorizing investments and managing the IT portfolio.
+> Enables a consistent experience and common language for business consumers and IT partners.	
+> Aetna’s Business Architecture Framework (EBAF) must be used in deriving business context.
+>The APF (Aetna Process Framework) will be referenced and used for Business Process Area and Context definitions and low-level user process workflow depictions.
+
+
+===========
+
+
+
+Principle	Statement of principle	Rationale	Implications
+ Build flexibility and extensibility into database design	Logical data models are flexible and extensible in support of evolving business requirements for multiple constituents.  Physical database designs support business performance, accessibility, scalability, data integrity, and availability requirements.  They are designed in support of information services and multiple applications, when appropriate.
+> Reduces system and data redundancy.
+> Flexible logical designs support evolving business requirements and are the starting point for physical design.
+> Allows database designs to more rapidly respond to business volumes and growth.
+> Ensures databases support the system performance, scalability and availability requirements.	> All business information requirements need to be logically modeled prior to implementation into a physical database.
+> Database design best practices around performance, accessibility, scalability, availability, and recoverability need to be formalized, published and maintained on an ongoing basis.
+> Best practices around planned data redundancy and consistency need to be formalized, published and maintained on an ongoing basis.
+> Database structures and information services are designed for reusability.
+ Ensure Data Quality and Integrity	Data quality and data integrity are required to ensure delivery of complete, accurate, and timely information to business operations and decision support functions.  Data Quality efforts should maximize benefit to the enterprise while taking into account all end-to-end costs/benefits.  Data quality processes must be integrated into business and technical processes in a way that does not interfere with continuity of business functions.  Data Quality must be continuously monitored to ensure proactive corrections and improvements.
+> Architects and DBA’s know which database solution to apply based on functional, non-functional and enterprise strategy requirements (e.g., transactional BoR, ODS, Data Mart, etc.)
+> Ensures business decisions are based on complete, timely and accurate data.
+> Fosters trusted constituent relationships through reliability of reported results.
+> Avoids downtime for investigation and recovery resulting from data quality problems or data compromise.	> The Business is responsible for the complete, accurate and timely content of the data.
+> Business Subject Matter Experts (SME) are needed to fulfill the role of Business Data Stewards for each domain
+> The IT organization is responsible for the complete, accurate, and timely storage, movement and delivery of data.
+> The Business is responsible for specifying the level of audit ability required for the data and its associated Create, Read, Update, Delete (CRUD) processes.
+> The IT organization is responsible for implementing adequate audit processes to support the audit requirements specified by the business.
+> Data quality assurance processes are non functional requirements for every operational and decision support system.
+ Manage data across its Life Cycle	
+Data will be managed from point of capture, through integration across various information classes, until it is no longer needed. 
+For details on this principle, refer to this document: https://aetsps.aetna.com/sites/EIAShr/Governance/Data%20Lifecycle%20Principle.docx
+> Prevents (intentional or unintentional) unplanned modification of data, which could lead to inefficient or incorrect business decisions.
+> Reduces cost through the efficiencies of maintaining only required data across the enterprise.
+> Business retention and performance concerns will be supported.
+> Enables compliance with regulations and internal policies (e.g. HIPAA, Sorbanes-Oxley, Aetna Records and Retentions Policy).
+> Enables the business to determine when and where their data resides.	> Business requirements will determine when data will move across the lifecycle.
+> There will be a managed process for the movement of data across various classes of information systems.
+> Must maintain traceability to show origination through final dispensation.
+> The Business is responsible for specifying the retention, archival, purge, and recoverability requirements of the data.
+> The IT organization is responsible for implementing adequate archival, purge, and recoverability processes to meet the business requirements.
+> A strategy for maintenance functions for data in each class needs to be defined and implemented.
+ Manage information actively	Enterprise information is managed by developing and publishing the business definition, allowable content, and optimum data structure.   This published metadata is not only used to document our content, but also to control it through exposing the metadata to systems that process it and use it to control editing, validation, data quality,  and similar processes.  Data names and definitions must be unambiguous, contextually unique and understandable to all users. Transformation rules and mappings must be recorded whenever data is converted to another format and/or value.  Information delivery assets (both business and it developed) will be accessible and reusable.	> Data is the foundation of decision-making, and must be managed to ensure that we know where it is, can rely upon its accuracy, and can obtain it when and where we need it.
+> Increases the efficiency of delivery of systems and services through clarity of definition and reuse.
+> Facilitates adoption of data as an enterprise asset.
+> Increases metadata and data integrity.
+> Reduces the cost and complexity of business solutions through the use and reuse of clear and common business definitions and valid values.
+> Ensures data consistency across all applications.	> Aetna must develop an element registry/naming taxonomy for enterprise data.
+> Business Data Stewards must be identified and their roles defined.
+> The organizational and technical methods for managing data at the enterprise level must be developed, implemented and adopted.
+> Semantic tags (properties) must be developed for all data regardless of presentation medium (web, transaction, data warehouse) providing a method of searching across business silos.
+> Aetna methodology must be enhanced to address processes that support enterprise deliverables.
+> Aetna must implement a process that supports traceability between logical, Physical, and Information services design artifacts.   In support of re-use, all design artifacts need to be stored and catalogued.
+> The Business is responsible for specifying the business definition and the business rules for the data. These rules include cardinality, optionality, and the domain of values.
+> The IT organization is responsible for implementing code and data stores that constrain the data to the specified definition, domain, and business rules.
+> Data attributes will be described without duplication, reconciling all alternate attribute names to a common definition.
+ Meet Data Access Requirements	Information Systems will be designed to support appropriate classes of use.   Information will be maintained in recognized Books of Record, which will publish their information through well-defined interfaces and in standardized formats that support the functional and non-functional requirements of information consumers.   Information is available and timely as appropriate to the end user.	> Reduces the overall cost of ownership for a business solution.
+> It is the intent of information system design to satisfy the functional and non-functional requirements of information consumers.
+> Definition of authoritative information sources is an enabling concept for Service-Oriented Architecture.
+> Prevents (intentional or unintentional) unplanned modification, which leads to dubious decisions based on incorrect information.	> Some business entities may have multiple sources, requiring a federated Book of Record.
+> Best practices for data access and usage must be developed and implemented for database designers, application developers and end users.
+> Aetna must develop data access best practices that meet the requirements of performance, database characteristics, accessibility and data integration.
+> Database access protocols (SQL, xquery) will be applied based on efficient use of the language for performance and function.
+> Database solution best practices need to be formalized, published and maintained on an ongoing basis.
+ Metadata management is a fundamental aspect of development	Creation, maintenance, and management of metadata is required throughout system development processes.  Metadata is integrated to support business goals (e.g. speed to market and cost efficency).  Standards and methodologies are established and used to inventory and manage business data assets across the enterprise. Business, Operational and Technical metadata are accessible to all consumers to allow them to perform their job.  
+> Ensures an efficient, consistent metadata management process across the enterprise.
+> Results in common skill sets that can be leveraged across the enterprise.
+> Standardizes data management and data analysis activities.
+> Allows for creation of standard templates and reusable artifacts, reducing cost and time to delivery.
+> Enables the capability to locate critical business data, understand its meaning, rely on data values, trust its accuracy, know its source and use it correctly.
+> Manages information assets within the IT portfolio.	> Metadata Management methods, tools and organizations must be developed, adopted and implemented to capture, integrate, manage and deliver metadata.
+> Aetna must have a common toolset that enables metadata integration.  Tools are needed to link all metadata components (business, operational, and technical).
+> Tools must have the ability to maintain and manage a federated metadata repository.
+> Aetna must enhance existing methodology to include the data integration and deliverables for shared enterprise metadata.
+> Methods must be established for communicating metadata about shareable data and databases.
+> The implementation of basic operational control metrics (record counts, data timestamp) will be a non functional requirement for every data process.
+ Place data strategically, use appropriately	Data placement decisions should be based on the business owner (who is executing the business process), the book of record most closely affiliated with this subject area and the application which is automating the business process to maintain the data.  Leverage all tiers of Information Architecture appropriately: transactional/BoR, ODS, DW, Analytics, Information Archives.	> Allows access to integrated and enterprise level data across all business segments for business analysis and decision support based reporting.
+> Provides our constituents with access to Aetna’s information.
+> Ensures data consistency across all applications.
+> Provides the ability to summarize and aggregate for Management Information reporting needs.
+> End users should be able to access data without knowledge of where it resides or how it is stored.
+> Placement based on business subject areas is stable and subject to minimal redefinition.
+> Reduces the cost and complexity of business solutions by having the data placed where it can be maintained, managed and disseminated.
+> Increases data integrity and data consistency.
+> Increase the efficiency of delivering data to consumers through services.	> Design standards and best practices must be formalized, published, and maintained on an ongoing basis.
+> Blueprint development efforts have to be developed and approved for all domains that impact subject area definitions to facilitate data placement direction.
+> Enterprise process models need to contain sufficient detail to facilitate data placement decisions.
+> Business data stewards for the contents of each subject area need to be assigned and be responsible addressing all requirements that surface for the subject area.
+> There must be an ongoing reconciliation of subject area boundaries to domain boundaries.
+> Must maintain a mapping of business subject area data by business data steward and by application process, for all business subject areas.
+> The full potential of an enterprise data warehouse cannot be realized unless there is enterprise level stakeholder participation and funding.
+> The enterprise data warehouse is architected for data analysis and adhoc query access.  It is not designed to support real time applications or operational based reporting.
+> The enterprise data warehouse and data marts are sourced from operational and external data to provide an integrated, reliable, and consistent view of data across all of Aetna’s business segments.  It is not a data store for independent Business Owned App.
+> Sourced data for the warehouse should be consistent with the Books of Records and operational systems.  The warehouse should not generate definitions of core business concepts (i.e. Individualization).
+> Define and publish clear scope and boundaries for each architectural layer and component (What is a Book of Record?  What is an ODS? Etc.)
+ Preserve privacy and confidentiality	Data implementations must ensure data privacy and confidentiality.	> Facilitates robust personalization of information portals.
+> Supports security and confidentiality polices.
+> Avoids (intentional or unintentional) data compromise that may erode the willingness of constituents and business partners to entrust us with their data and that may jeopardize corporate good will.
+> Ensures compliance with legislation (such as HIPAA, Gramm-Leach-Bliley) that requires privacy and confidentiality of customer data, based on business data classification and applicable regulations.	> All data should be treated as confidential, unless classified otherwise.  Information Security policies will be complied with. https://securnet.aetna.com/policies/Standards/HandlandProtectData.htm  
+> Security infrastructure mechanisms must be consistently deployed to authenticate users to the individual level.
+> Security infrastructure mechanisms must be consistently implemented to control access to data, based on “need-to-know” criteria.
+> Access to sensitive and confidential data must be audited and archived as required by regulatory requirements and to support potential forensic investigations.
+> Encryption for data at rest is a potential solution when access controls alone to do not afford sufficient privacy measures.
+> Standard means of securing data (authentication, authorization, encryption, auditing) apply to all users (employees, business partners, constituents).
+> Production data must not be used in non-production database environment with the exception of standard reference information.
+> The Business is responsible for specifying the security requirements of the data.
+> The IT organization is responsible for implementing adequate security for the data Create, Read, Update, Delete (CRUD) operations, storage, transport, and accessibility.
+ Support all forms of data	Information/Data definition, quality controls, access and storage must support all forms of data – simple, complex, structured and unstructured.	> Allows for data structure and information services alignment.
+> Facilitates the storage and retrieval of information in its native format (text, audio, image, video, XML).
+> Allows for business applications that integrate structured and unstructured content.
+> Facilitates the description of data for application use (enterprise B2B and B2C) through self-describing protocols (XML).
+> Facilitates content-rich, highly informative decision support and other information providing systems, such as EIS (Executive Information Systems) and EIP (Enterprise Information Portals).	> Data elements must be defined through metadata as structured (character, numeric, date) and unstructured (text, image, audio, video) data.
+> Data stores and infrastructure components must scale to support the storage and bandwidth requirements of unstructured data.
+> Emerging representational standards such as XML and it’s associated access protocols (xquery) must be supported by our technical infrastructure.
+> Aetna must devise processes that support he creation, storage and retrieval of documents, images and other unstructured information-rich objects used within Aetna or exchanged with external organizations and vendors.
+
+
+==========
+
+
+
+Principle	Statement of principle	Rationale	Implications
+ Build flexibility and extensibility into database design	Logical data models are flexible and extensible in support of evolving business requirements for multiple constituents.  Physical database designs support business performance, accessibility, scalability, data integrity, and availability requirements.  They are designed in support of information services and multiple applications, when appropriate.
+> Reduces system and data redundancy.
+> Flexible logical designs support evolving business requirements and are the starting point for physical design.
+> Allows database designs to more rapidly respond to business volumes and growth.
+> Ensures databases support the system performance, scalability and availability requirements.	> All business information requirements need to be logically modeled prior to implementation into a physical database.
+> Database design best practices around performance, accessibility, scalability, availability, and recoverability need to be formalized, published and maintained on an ongoing basis.
+> Best practices around planned data redundancy and consistency need to be formalized, published and maintained on an ongoing basis.
+> Database structures and information services are designed for reusability.
+ Ensure Data Quality and Integrity	Data quality and data integrity are required to ensure delivery of complete, accurate, and timely information to business operations and decision support functions.  Data Quality efforts should maximize benefit to the enterprise while taking into account all end-to-end costs/benefits.  Data quality processes must be integrated into business and technical processes in a way that does not interfere with continuity of business functions.  Data Quality must be continuously monitored to ensure proactive corrections and improvements.
+> Architects and DBA’s know which database solution to apply based on functional, non-functional and enterprise strategy requirements (e.g., transactional BoR, ODS, Data Mart, etc.)
+> Ensures business decisions are based on complete, timely and accurate data.
+> Fosters trusted constituent relationships through reliability of reported results.
+> Avoids downtime for investigation and recovery resulting from data quality problems or data compromise.	> The Business is responsible for the complete, accurate and timely content of the data.
+> Business Subject Matter Experts (SME) are needed to fulfill the role of Business Data Stewards for each domain
+> The IT organization is responsible for the complete, accurate, and timely storage, movement and delivery of data.
+> The Business is responsible for specifying the level of audit ability required for the data and its associated Create, Read, Update, Delete (CRUD) processes.
+> The IT organization is responsible for implementing adequate audit processes to support the audit requirements specified by the business.
+> Data quality assurance processes are non functional requirements for every operational and decision support system.
+ Manage data across its Life Cycle	
+Data will be managed from point of capture, through integration across various information classes, until it is no longer needed. 
+For details on this principle, refer to this document: https://aetsps.aetna.com/sites/EIAShr/Governance/Data%20Lifecycle%20Principle.docx
+> Prevents (intentional or unintentional) unplanned modification of data, which could lead to inefficient or incorrect business decisions.
+> Reduces cost through the efficiencies of maintaining only required data across the enterprise.
+> Business retention and performance concerns will be supported.
+> Enables compliance with regulations and internal policies (e.g. HIPAA, Sorbanes-Oxley, Aetna Records and Retentions Policy).
+> Enables the business to determine when and where their data resides.	> Business requirements will determine when data will move across the lifecycle.
+> There will be a managed process for the movement of data across various classes of information systems.
+> Must maintain traceability to show origination through final dispensation.
+> The Business is responsible for specifying the retention, archival, purge, and recoverability requirements of the data.
+> The IT organization is responsible for implementing adequate archival, purge, and recoverability processes to meet the business requirements.
+> A strategy for maintenance functions for data in each class needs to be defined and implemented.
+ Manage information actively	Enterprise information is managed by developing and publishing the business definition, allowable content, and optimum data structure.   This published metadata is not only used to document our content, but also to control it through exposing the metadata to systems that process it and use it to control editing, validation, data quality,  and similar processes.  Data names and definitions must be unambiguous, contextually unique and understandable to all users. Transformation rules and mappings must be recorded whenever data is converted to another format and/or value.  Information delivery assets (both business and it developed) will be accessible and reusable.	> Data is the foundation of decision-making, and must be managed to ensure that we know where it is, can rely upon its accuracy, and can obtain it when and where we need it.
+> Increases the efficiency of delivery of systems and services through clarity of definition and reuse.
+> Facilitates adoption of data as an enterprise asset.
+> Increases metadata and data integrity.
+> Reduces the cost and complexity of business solutions through the use and reuse of clear and common business definitions and valid values.
+> Ensures data consistency across all applications.	> Aetna must develop an element registry/naming taxonomy for enterprise data.
+> Business Data Stewards must be identified and their roles defined.
+> The organizational and technical methods for managing data at the enterprise level must be developed, implemented and adopted.
+> Semantic tags (properties) must be developed for all data regardless of presentation medium (web, transaction, data warehouse) providing a method of searching across business silos.
+> Aetna methodology must be enhanced to address processes that support enterprise deliverables.
+> Aetna must implement a process that supports traceability between logical, Physical, and Information services design artifacts.   In support of re-use, all design artifacts need to be stored and catalogued.
+> The Business is responsible for specifying the business definition and the business rules for the data. These rules include cardinality, optionality, and the domain of values.
+> The IT organization is responsible for implementing code and data stores that constrain the data to the specified definition, domain, and business rules.
+> Data attributes will be described without duplication, reconciling all alternate attribute names to a common definition.
+ Meet Data Access Requirements	Information Systems will be designed to support appropriate classes of use.   Information will be maintained in recognized Books of Record, which will publish their information through well-defined interfaces and in standardized formats that support the functional and non-functional requirements of information consumers.   Information is available and timely as appropriate to the end user.	> Reduces the overall cost of ownership for a business solution.
+> It is the intent of information system design to satisfy the functional and non-functional requirements of information consumers.
+> Definition of authoritative information sources is an enabling concept for Service-Oriented Architecture.
+> Prevents (intentional or unintentional) unplanned modification, which leads to dubious decisions based on incorrect information.	> Some business entities may have multiple sources, requiring a federated Book of Record.
+> Best practices for data access and usage must be developed and implemented for database designers, application developers and end users.
+> Aetna must develop data access best practices that meet the requirements of performance, database characteristics, accessibility and data integration.
+> Database access protocols (SQL, xquery) will be applied based on efficient use of the language for performance and function.
+> Database solution best practices need to be formalized, published and maintained on an ongoing basis.
+ Metadata management is a fundamental aspect of development	Creation, maintenance, and management of metadata is required throughout system development processes.  Metadata is integrated to support business goals (e.g. speed to market and cost efficency).  Standards and methodologies are established and used to inventory and manage business data assets across the enterprise. Business, Operational and Technical metadata are accessible to all consumers to allow them to perform their job.  
+> Ensures an efficient, consistent metadata management process across the enterprise.
+> Results in common skill sets that can be leveraged across the enterprise.
+> Standardizes data management and data analysis activities.
+> Allows for creation of standard templates and reusable artifacts, reducing cost and time to delivery.
+> Enables the capability to locate critical business data, understand its meaning, rely on data values, trust its accuracy, know its source and use it correctly.
+> Manages information assets within the IT portfolio.	> Metadata Management methods, tools and organizations must be developed, adopted and implemented to capture, integrate, manage and deliver metadata.
+> Aetna must have a common toolset that enables metadata integration.  Tools are needed to link all metadata components (business, operational, and technical).
+> Tools must have the ability to maintain and manage a federated metadata repository.
+> Aetna must enhance existing methodology to include the data integration and deliverables for shared enterprise metadata.
+> Methods must be established for communicating metadata about shareable data and databases.
+> The implementation of basic operational control metrics (record counts, data timestamp) will be a non functional requirement for every data process.
+ Place data strategically, use appropriately	Data placement decisions should be based on the business owner (who is executing the business process), the book of record most closely affiliated with this subject area and the application which is automating the business process to maintain the data.  Leverage all tiers of Information Architecture appropriately: transactional/BoR, ODS, DW, Analytics, Information Archives.	> Allows access to integrated and enterprise level data across all business segments for business analysis and decision support based reporting.
+> Provides our constituents with access to Aetna’s information.
+> Ensures data consistency across all applications.
+> Provides the ability to summarize and aggregate for Management Information reporting needs.
+> End users should be able to access data without knowledge of where it resides or how it is stored.
+> Placement based on business subject areas is stable and subject to minimal redefinition.
+> Reduces the cost and complexity of business solutions by having the data placed where it can be maintained, managed and disseminated.
+> Increases data integrity and data consistency.
+> Increase the efficiency of delivering data to consumers through services.	> Design standards and best practices must be formalized, published, and maintained on an ongoing basis.
+> Blueprint development efforts have to be developed and approved for all domains that impact subject area definitions to facilitate data placement direction.
+> Enterprise process models need to contain sufficient detail to facilitate data placement decisions.
+> Business data stewards for the contents of each subject area need to be assigned and be responsible addressing all requirements that surface for the subject area.
+> There must be an ongoing reconciliation of subject area boundaries to domain boundaries.
+> Must maintain a mapping of business subject area data by business data steward and by application process, for all business subject areas.
+> The full potential of an enterprise data warehouse cannot be realized unless there is enterprise level stakeholder participation and funding.
+> The enterprise data warehouse is architected for data analysis and adhoc query access.  It is not designed to support real time applications or operational based reporting.
+> The enterprise data warehouse and data marts are sourced from operational and external data to provide an integrated, reliable, and consistent view of data across all of Aetna’s business segments.  It is not a data store for independent Business Owned App.
+> Sourced data for the warehouse should be consistent with the Books of Records and operational systems.  The warehouse should not generate definitions of core business concepts (i.e. Individualization).
+> Define and publish clear scope and boundaries for each architectural layer and component (What is a Book of Record?  What is an ODS? Etc.)
+ Preserve privacy and confidentiality	Data implementations must ensure data privacy and confidentiality.	> Facilitates robust personalization of information portals.
+> Supports security and confidentiality polices.
+> Avoids (intentional or unintentional) data compromise that may erode the willingness of constituents and business partners to entrust us with their data and that may jeopardize corporate good will.
+> Ensures compliance with legislation (such as HIPAA, Gramm-Leach-Bliley) that requires privacy and confidentiality of customer data, based on business data classification and applicable regulations.	> All data should be treated as confidential, unless classified otherwise.  Information Security policies will be complied with. https://securnet.aetna.com/policies/Standards/HandlandProtectData.htm  
+> Security infrastructure mechanisms must be consistently deployed to authenticate users to the individual level.
+> Security infrastructure mechanisms must be consistently implemented to control access to data, based on “need-to-know” criteria.
+> Access to sensitive and confidential data must be audited and archived as required by regulatory requirements and to support potential forensic investigations.
+> Encryption for data at rest is a potential solution when access controls alone to do not afford sufficient privacy measures.
+> Standard means of securing data (authentication, authorization, encryption, auditing) apply to all users (employees, business partners, constituents).
+> Production data must not be used in non-production database environment with the exception of standard reference information.
+> The Business is responsible for specifying the security requirements of the data.
+> The IT organization is responsible for implementing adequate security for the data Create, Read, Update, Delete (CRUD) operations, storage, transport, and accessibility.
+ Support all forms of data	Information/Data definition, quality controls, access and storage must support all forms of data – simple, complex, structured and unstructured.	> Allows for data structure and information services alignment.
+> Facilitates the storage and retrieval of information in its native format (text, audio, image, video, XML).
+> Allows for business applications that integrate structured and unstructured content.
+> Facilitates the description of data for application use (enterprise B2B and B2C) through self-describing protocols (XML).
+> Facilitates content-rich, highly informative decision support and other information providing systems, such as EIS (Executive Information Systems) and EIP (Enterprise Information Portals).	> Data elements must be defined through metadata as structured (character, numeric, date) and unstructured (text, image, audio, video) data.
+> Data stores and infrastructure components must scale to support the storage and bandwidth requirements of unstructured data.
+> Emerging representational standards such as XML and it’s associated access protocols (xquery) must be supported by our technical infrastructure.
+> Aetna must devise processes that support he creation, storage and retrieval of documents, images and other unstructured information-rich objects used within Aetna or exchanged with external organizations and vendors.
+====================================
+
+Development Principles
+
+Principle	Statement of principle	Rationale	Implications
+ Assemble applications from services	Promote integration and reuse through the development and deployment of services.	> Deployment of services provides common application programming interface structures.
+> Deployment of services reduces the complexity of component interactions.
+> Deployment of services promotes reuse.
+> Deployment of services extends the accessibility of applications, allowing for reach beyond the firewall.	
+> The maturation of web services must not be a prerequisite for a service-based architecture.
+> Design patterns must be developed to facilitate the deployment and use of services.
+> Staff must be educated on the process of building and deploying applications from services and components.
+> Common interface structures must be developed and adhered to.
+> Services must be loosely coupled and primarily stateless.
+> Services must be designed to make appropriate use of network bandwidth. Their coarseness will be purposefully determined.
+> Infrastructure security services must be leveraged throughout the application architecture.
+> Applications must adhere to the appropriate services for storage, description, and retrieval of information.
+> A functional (i.e., private or restricted) services layer must be used by domain service providers to publish the business components and services that are used by intra-domain consumers.
+> A business services layer must be used by domain service providers to publish the business components and services that are used by cross-domain and other external consumers.
+ Comply with blueprints and standards	Application, component and service developers must comply with relevant Blueprints and existing (open, de-facto, Aetna) patterns, coding standards and best practices.	> Adherence to Blueprints and standards supports business strategies.
+> Standards compliance ensures that applications, components and services leverage existing patterns and frameworks, reducing development time, improving quality and simplifying and reducing the cost of enhancements and maintenance.
+> Standards are particularly useful in reducing maintenance and quality risks associated with outsourcing by eliminating areas of interpretation vulnerable to miscommunication.
+> Standards promote economies of scale by enabling skilled staff to move between projects.
+> Standards decrease learning curves for new/novice programming staff.
+> Standards increase the efficiency of code reviews, promoting their greater use, ultimately resulting in quality improvements.	> Architecture Blueprints & standards will be used to document the architecture components and services of the application.
+> Aetna must create best practices and patterns for application, component and service development using technologies (including programming languages) within the enterprise architecture.
+> Aetna must create coding standards within the enterprise architecture.
+> Design and code-level documentation must become required artifacts in the  development process.
+> Code reviews must become a required step in the development process.
+> Adherence to coding standards must become a criterion for migration to production.
+> Adherence to design and coding standards must become criterion on architect and developer scorecards.
+ Develop applications iteratively	The application development process must deliver fully functional subsets of the total target application in rapid succession.	> Limited-scope releases reduce risk, are easier to manage and deliver business-critical functionality when it is most needed.
+> Iterations allow for agile response to changes to the environment, requirements and/or priority.
+> Iterations allow for the evaluation and mitigation of the most material project risks (technology, performance, integration, interdependencies) at the earliest possible time.
+> Iterations promote reuse by delivering fully functional components at predictable times.
+> Demonstrating immediate benefits in the early iterations fosters ongoing business support and participation in future iterations and projects.	> Aetna must adopt a formal engineering process that focuses on iterative application development. This process must support round-trip engineering concepts.
+> Each project must be subdivided into one or more iterations, each with its own scope, content, risks, dependencies and duration.
+> Application functional requirements must be described by use cases, which must be mapped to the iterations in which they will be delivered.
+> Iterations must deliver fully functional components, to mitigate regression risks in subsequent iterations. Validation must include behaviors arising from component interaction.
+> Cultural changes must be implemented to ensure the success of the new iterative software development process. All stakeholder entities (business users, BSIMs, developers, DBAs, project managers, architects, QA engineers) are subject to cultural changes.
+>
+ Develop using quality oriented processes	The development process must include a formal validation process to assure that applications, components and services are reliable, scalable and functional and meet business requirements.	> The validation process increases the usability and reliability of  applications, components and services, resulting in decreased failure rates, fewer corrective actions, less risk to the business and increased customer satisfaction.
+> When modifying software, there is less need for regression testing to modified components and their interfaces, thereby reducing life-cycle costs.
+> Maintenance represents a substantial part of the total cost of software, and employing a comprehensive software validation process in conjunction with componentization helps to reduce the long-term cost by reducing the cost of each subsequent software validation.	> Software cannot be properly validated without an established software life cycle.
+> Design and development plans should include a specific plan for how the software validation process will be controlled and executed.
+> Test plans, procedures and test cases should be developed as soon as the requirements are communicated, understood and agreed to.
+> Aetna must make use of testing tools that demonstrate the software's run-time behavior in response to selected inputs and conditions.
+> Integration testing must be planned for both application maintenance and new application development.
+> Validation procedures must include desk checking, code reviews and the use of published test harnesses for independent, unit-level service verification to expose potential bugs and ensure compliance with standards at the earliest and least costly point in the project.
+ Drive projects from business requirements	Application development projects will be conducted in strict accordance with mutually understood, controlled and approved business requirements.	> Assures that the application will meet customer expectations.
+> Helps to mitigate the risk of scope creep.
+> Increases ability to meet project/phase deadlines and reduces overall project risks.
+> Permits successful iterative development as a result of having mutually understood requirements.	> Business must produce clearly understandable functional requirements and resolve ambiguities identified by developers before starting application development.
+> Functional requirements must be rationalized with use cases.
+> AIS must effectively guide the business through description of and consensus on both functional and non-functional requirements.
+> Highly risky use cases must be strongly considered for early development, validation and deployment.
+> Project leaders must generate a formal statement of work and establish amendment processes (APLC).
+> Application development projects must use the appropriate technology to address the business requirements and provide for agility.
+ Focus on the development of reusable components	Development projects must be planned, organized, and executed to address the paradigm of component-based development and its unique requirements and interdependencies, and to deliver components with optimal reusability.	> Components promote reuse and increase development team efficiency.
+> Component-based development supports N-tier architectures through delivery of distributable application components.
+> Quality of code is increased as developers focus on the technology and logic for their component.
+> Reuse of previously tested and tuned components mitigates reliability and performance problems, reducing overall project risks and the costs associated with them.
+> Component-based development enables parallel application development.	> Programmers will become aligned with and responsible for specific subject areas. These areas may represent either individual components (component-based teams) or individual business applications (application assembly teams).  This also implies some organizational structure changes.
+> Applications must be insulated from component changes through the use of abstraction layers.
+> Component-based design and development training must be provided to development teams.
+> Iterative component development and reuse best practices must be established and disseminated.
+> Development teams must use security components provided by the infrastructure.
+> Development teams must use common services for utility activities.
+> Aetna must support round-trip engineering to provide agility in response to reuse pattern changes.
+> Consumer-side adapters will honor the technology language and platform of consumer applications.
+> The catalog of components and services will be maintained within a metadata repository.  This repository should provide access to consumable interfaces and specifications.
+ Select and use agreed upon tools	Development tools must be assessed, evaluated and selected according to a formal and agile process that leads to selection of standards-based, industry-proven, reliable and productive tools.	> Competing tools are assessed, evaluated and selected according to a consistent set of requirements.
+> Developers who are outfitted with the appropriate tools are more productive and satisfied and produce higher quality applications, components and services.
+> Consistent tools selection promotes reuse of technical skills and consistent development practices across geographic regions and development teams.
+> The formal evaluation process promotes achievement of a balance between various tools’ attributes and the functional and technical requirements of a target application/component/service.
+> Tools can be continually assessed to determine their fit throughout time, allowing for rational decisions to invest, maintain or disinvest a given tool’s usage.	> A formal assessment, evaluation and selection process must be established and communicated.
+> The Enterprise Architecture must be kept current to ensure that decisions are being made based on current principles, target architectures and product information.
+> Business requirements must be kept current to ensure that proofs of concept are based on the most reasonably realistic requirements.
+> Skills inventories must be maintained to provide current critical masses, allowing for more accurate impact assessments and cost determination.
+> Development and testing tools must be selected in harmony with the current, formal engineering processes, (RUP, CMM).
+ Size projects based upon agreed deliverables and duration	Applications, components and services will be designed, developed and delivered to fulfill the stated, agreed and managed, non-functional requirements of the business, and development projects will be sized based on agreed deliverables and duration.	> Right-sizing ensures that IT investments are based on the actual availability, reliability, reusability, scalability and security requirements of the business, allowing Aetna to invest no more or less than what is needed.
+> Right-sizing ensures that project resources are assigned and managed based on agreed, acceptable scope and constraints.
+> Right-sizing supports efficient capacity planning and management of IT infrastructure and human resource pools.	> Non-functional requirements must be clearly stated, understood and agreed upon before reuse vs. buy vs. develop decisions are made.
+> IT infrastructure experts must be engaged during requirements analysis and, proactively, at other times throughout the year.
+> Cost-benefit models must be created, to support sizing decisions (how available, how reliable, how scalable).
+> Aetna must become more proficient at project estimating and tracking.
+> Skills inventories must be maintained to provide current critical masses, allowing for more accurate impact assessments and cost determination.
+> Aetna must develop formal processes for renegotiating operational support and service level agreements.
+> Aetna must support round-trip engineering to provide adaptability and agility during significant, unexpected changes in usage patterns.
+
+Software Principles
+
+Principle	Statement of principle	Rationale	Implications
+ Applications Must be End-User Focused	
+Software User interfaces must be intuitive, consistent, and designed for the End-Users intended goals. 
+------------------------------------------------------------------------------------
+Software application presentation interfaces must be intuitive and comfortable for the end-user.  In this principle, the term “end-user” encompasses only human­­­­­-to-system interactions.
+ 
+> Provides our Constituents with a user interface that is simple and easy to use promoting greater satisfaction.
+> Provides our Constituents with a common user interface, regardless of the device/platform being used.
+> Providing a single signon authentication across various channels facilitates ease of use.
+-----------------------------------------------
+> Supports the user preference for information provided in logical groupings and intuitive tools and tailored to the user’s role.
+> Supports the user preference for a single user interface, regardless of the number or location of business applications that support their business activities.
+> Supports the user preference for a single authentication process that provides access to all of their relevant and authorized information.
+> Takes advantage of newly available technology that provides alternate means for users to access information.
+> Supports the user requirement for multiple input and output methods for applications.
+> Aetna must provide a single sign-on solution, independent of channel, for all sources of information.
+> Applications must present information from the end user’s perspective.
+> Aetna must support end users requiring information across multiple access channels (PDAs, phones and personal computers).
+> New technology must be piloted to end users so as to gain their feedback on the usefulness of the new technology.
+> Applications must interoperate with multiple input methods including keyboard, mouse, voice and assistive devices.
+> Applications must interoperate with multiple output methods including display, sound and print.
+> Aetna must adopt solution design practices and end-user validation techniques that certify presentation interfaces before development costs are fully spent (e.g., storyboarding, persona definitions, talk-aloud & think-aloud protocols, etc.).
+> Presentation interface solution developers must engage the Human Factors Engineering (HFE) & User Interface Design organization early in the project lifecycle for design advice and usability evaluations, according to HFE engagement guidelines.
+-------------------------------------
+> Aetna must provide a single sign-on solution, independent of channel, for all sources of information.
+> Applications must present information from the end user’s perspective.
+> Aetna must support end users requiring information across multiple access channels (PDAs, phones and personal computers).
+> New technology must be piloted to end users so as to gain their feedback on the usefulness of the new technology.
+> Applications must interoperate with multiple input methods including keyboard, mouse, voice and assistive devices.
+> Applications must interoperate with multiple output methods including display, sound and print.
+> Aetna must adopt solution design practices and end-user validation techniques that certify presentation interfaces before development costs are fully spent (e.g., storyboarding, persona definitions, talk-aloud & think-aloud protocols, etc.).
+> Presentation interface solution developers must engage the Human Factors Engineering (HFE) & User Interface Design organization early in the project lifecycle for design advice and usability evaluations, according to HFE engagement guidelines.
+ Applications Must be Rules-Driven	Software applications must be driven by business events whose supporting rules are defined, owned and maintained by the business. Business rules must not be embedded in programming logic unless performance requirements preclude all other options. The appropriate business rules implementation solution should be determined using a decision model.	> Makes software more agile, allowing it to adapt to changes in the business without changing the programming logic.
+> Increases reliability because business rules are implemented and maintained directly by the domain experts (the business owners).
+> Increases customer satisfaction due to increased reliability and agility.
+> Makes possible the reuse of business rules across multiple business processes.	> Aetna must electronically document and manage its business process and information management rules in meta-repositories that link business rules with the business processes, data and the applications that enforce them.  These repositories should further document the manner by which rules are implemented within applications, components and services, and each rule’s maintenance characteristics.
+> In order to associate business rules with business processes, a well-defined and sufficiently detailed business process model must be created, maintained and integrated with the rules repository.
+> To the extent possible, implemented rules must be persisted in a way that is intelligible and manageable by the business areas.
+> Aetna must implement business rules according to a decision model that recognizes the rule’s maintenance characteristics, frequency of execution, processing and enforcement context to determine which solution option is most appropriate (e.g., programming logic, configurable code object, simple data lookup, complex data lookup, rules engine, etc.).
+> Aetna must clearly articulate and document business system requirements prior to design. This must be formally established as a first step in any software engineering process.
+ Applications Should be Context-Aware	Applications, components and services should provide information to users based upon the environment, location or context from which the information is accessed and the preferences by which the information is presented.	> Allows context-sensitive access to business information and software assets, thus providing selectable, pertinent information at anytime, from anywhere.
+> Provides an additional level of personalization. Information is most valuable when it directly relates to the location of the user.
+> Relieves the burden on the user caused by overloading him/her with too much information.
+> Results in more efficient use of networks and processing time by limiting the amount of unnecessary or unwanted information being provided.
+> Provides extra information to user that is appropriate to their location and not a filter of normal information.	> Applications, and some kinds of components and services must be able to present highly personalized information that is pertinent to where the user is located.
+> Aetna must add metadata to their data models that describe the location usefulness of information.
+> Aetna must adopt the use of technologies that broadcast the location of mobile users.
+> Applications and some kinds of components and services must be aware of the device requesting the information and respond with information that is properly formatted for that device.
+> Applications and some kinds of components and services must be context-aware to take advantage of personalized information.
+> Applications and some types of components and services must include the ability for users to set preferences as to how and what information is delivered.
+ Software Must be Adaptable	Software must be able to accommodate, withstand and/or endure changes to underlying technologies (e.g., operating systems and hardware) or support a wide variety of technologies in an as-is state. Adhere to the product evolution for purchased products.	> Provides the ability to support a heterogeneous technology capability and environment for realizing business goals and architectures.
+> Minimizes the impact of technology change by anticipating future needs and new usage considerations.
+> Allows for support of multiple access channels and user interfaces, such as PDAs, phones and personal computers.
+> Provides a flexible means for implementing multiple technology, application and service models.	> Tools and technologies must be evaluated for their ability to provide the most appropriate interoperability between applications, components, services and databases.
+> Aetna must include adaptive measures (interoperability, portability, flexibility, scalability and reusability) in the design, development and/or acquisition of software technology components.  Model-driven architecture and design will enable the creation of components and services that can be implemented on a variety of platforms.
+> Each software component, service, application, and architecture artifact must be well documented.
+> Reuse of assets must be planned for, managed and measured.
+> The software model needs a clear process to separate business functionality from technology.
+> Software components must be clearly distinguished from the mechanisms that allow them to interact.
+ Software Must be Agile	Software must be designed with change in mind by incorporating the dimensions along which an application, component or service is expected to evolve and adapt. Software must accommodate and expect changing business requirements.	> Assists application, component and service maintainers better understand the ramifications of change.
+> Assists in better estimate costs of modifications.
+> Assists in the separation of concerns regarding the functionality of a component from the ways it is connected to other components.
+> Assists handling changing concerns about performance and reuse.	> The software model needs a clear process to separate business functionality from technology.
+> Software components must be clearly distinguished from the mechanisms that allow them to interact.
+> Business rules must be isolated within components and services in such a way that business changes preferably do not require (or minimize to the greatest possible extent) programming logic  changes.
+> Performance and reuse must be able to be addressed without major ramifications.
+> Aetna must adhere to the evolution of purchased products by minimizing the customization of purchased products.
+ Software Must be Component-Based and Service-Oriented	Software solutions must be component-based and service-oriented (both within and across domains) and use reusable components or services across the enterprise.	> Because component lifecycles (design, development, testing, deployment,  maintenance, and decommissioning) are usually independent, allows changes to be made to one component without affecting others.
+> Fosters agility between and within business processes, system architecture and infrastructure.
+> Promotes reuse, as business functions, utilities and common, technical services are contained in components designed with reuse in mind.
+> Results in component interfaces that are standardized and well-defined through a functional contract or interface specification.
+> Allows applications to be assembled from a business component and service repository.
+> Allows modularity to be achieved by grouping components into logical blocks of functionality.
+> Supports purchase and incorporation of third-party components.	> Aetna must create a repository of components and services.
+> Aetna should create a registry of component and service consumers.
+> Aetna must institute a component and configuration management process.
+> Aetna must embrace enabling technologies for component and service execution.
+> Aetna must implement a robust metadata strategy that sufficiently describes entity properties and semantics. Components should be designed for multiple deployment options, to increase the value of individual components to meet multiple business needs.
+> Aetna must train software architects, developers and quality assurance engineers in the techniques of component-based, service-oriented construction from both the service-provider and service-consumer perspectives.
+> Aetna must adopt component and service development practices for inter- and intra- domain applications and business systems.
+ Software Must be Economical	Software must be made as economical as possible by leveraging existing assets, lower cost technology and productive development environments.  Cost analysis of reuse, acquisition and development options must be based on total cost of ownership over time, as opposed to total purchase cost vs. total development cost. Furthermore, software must meet business requirements while maintaining an appropriately sized function, technology platform and customization.	> Recognizes that Aetna’s AIS department has a budgeted amount of resources.
+> Recognizes that financial and resource limitations dictate that Aetna must find the most economical software solution that fits the requirements.
+> TCO-based analysis more accurately determines the most economical software solution that fits the requirements.
+> TCO-based analysis aligns with an application’s life cycle cost to the enterprise, versus its initial acquisition/development cost.
+> Aids Aetna’s AIS department in its ongoing effort to minimize the (ongoing) fixed costs of software.	> Software must provide the services that the business requires while using a formally engineered design that helps reduce the time and effort required for modifications.
+> Aetna must provide a structure for determining when to reuse tools, skills, applications and/or components instead of making new investments.
+> Software must be designed recognizing the abilities of the development team to deliver and maintain the solution.
+> Customization of third party applications and components must be minimized. Where practical and consistent with industry best practices, non-competitive business processes should be modified to align with third party application behavior.
+> Total Cost of Ownership must include customization and integration costs.
+> Total Cost of Ownership must include risk analysis of potential future impacts based on functional and/or architectural changes.
+> Technical staff must be provided with enough vendor/product information to accurately assess required customization and integration before a decision is made.
+> Integration cost must account for both application/component integration and data/metadata integration.
+> Cost models must be used consistently across the enterprise and must be refined to reflect real life experience.
+> The business requirements associated with a business system must justify the size of function, technology platform and runtime platform and the resulting toolset(s) required to implement, support, execute or maintain the system.
+> Aetna must avoid investment in multiple proprietary technologies and must limit the set of supported industry standard technologies.
+ Software Must be Formally Engineered	A process to provide a consistent, well-documented approach to engineering disciplines must be consistently adopted across the enterprise to manage, measure, validate and expedite application and/or technology delivery.	> Enables quick, measured and consistent software delivery.
+> Provides a consistent approach to iterative software development and documentation.
+> Provides a consistent way to test and control software maintenance. Validation processes limit or isolate the need for regression testing to only the modified component and its interfaces, reducing risk.
+> Provides the ability to more easily share software components and services.
+> Enables easier transition for a software team to move from project to project. Also provides a consistent mechanism to outsource projects or portions of projects to external teams.
+> Increases the usability and reliability of the application, components and services, resulting in decreased failure rates, fewer corrective actions, less risk to the business and increased customer satisfaction.
+> Reduces long-term cost by reducing the cost of each subsequent software validation. Maintenance represents a substantial part of the total cost of software.	> Aetna must implement a process for evaluating and selecting products for purchase and implementation. This process must make use of testing tools that demonstrate the software's runtime behavior in response to selected inputs and conditions.
+> Aetna must implement a process that provides a consistent way of analyzing, designing, constructing/reconstructing, validating, documenting and implementing software and technology solutions. Software cannot be properly validated without an established software life cycle.
+> Aetna must implement a process that helps develop components, services and objects as reusable assets.
+> Aetna must define roles and responsibilities for all architecture domain teams early in the process. Project plans should include a validation plan and process regarding quality control, measure and execution.
+> Aetna must incorporate the use of industry accepted modeling (UML) in software design.
+> Integration testing must be planned for both application maintenance and new application development.
+ Software Must be Interoperable	Aetna must implement  enabling technologies, and component and service designs that allow one application, component or service to communicate, integrate or collaborate with another.	> Reduces the need to implement redundant functions across multiple applications, components and services.
+> Recognizes that interoperability is a required attribute for implementation of n-tier application models.
+> Provides information sharing across applications, departments and businesses.
+> Provides for a diverse set of technical solutions to satisfy business requirements.
+> Presents a single view of information across multiple applications, components, services and databases.
+> Promotes reuse of existing software.	> Aetna must promote the use of industry accepted technology standards and open architectures.
+> Aetna must promote reuse and sharing of information between departments.
+> Aetna must support a heterogeneous technology capability and environment for realizing business goals and architectures.
+> Tools and technologies must be evaluated for their ability to provide the most appropriate interoperability between applications, components, services and databases.
+> Aetna must place an increased emphasis on integration testing.
+ Software Must be Reliable	Software must perform its function when needed, consistently, and as designed.  It must also provide mechanisms for determining whether it is performing reliably.	> Increases customer satisfaction.
+> Reduces maintenance costs.
+> Supports consistent delivery of required service levels.
+> Reduces development risk when stable, reliable components are reused.	> Aetna must provide a mechanism to design fault tolerant, redundant and highly available applications.
+> Frameworks and patterns must be developed or selected to help build reliable and scalable software.
+> Fault isolation, event logging and duration of critical paths must be accessible to monitoring, trending and metrics.
+> Appropriate tools need to be selected to fulfill monitoring, trending and metrics requirements.
+> Aetna must provide a mechanism for software metrics and quality assurance.
+> Aetna must provide a testing process to ensure software reliability at the component level for both fine-grained and coarse-grained components. This must include integration testing and the use of published test harnesses for independent, unit-level service verification.
+ Software Must be Reusable	Software must support the reuse of components, services, frameworks, products and architectures.	> Allows Aetna to maintain a smaller software portfolio.
+> Increases productivity, maintenance and delivery timeframes.
+> Reduces risk when existing components and services are reused.
+> Reduces the overall total cost of ownership.	> A repository of software components and services must be created and maintained.
+> A process must be instituted to develop, promote and reward reusable component and service creation.
+> Services must have well-defined and published interface specifications.
+> Component integration standards must be created, explained and promoted.
+> A set of well documented, widely accepted reference frameworks/implementations and their integrated patterns must be available, explained and promoted for software development.
+> Each software component, service and architecture artifact must be well documented.
+> Reuse or “ease of assembly” of assets into new or modified applications must be managed and measured.
+ Software Must be Scalable	Software must be appropriately scalable (up or down) in size, capacity and functionality. Appropriate scalability is determined by business solution requirements and solutions will be assessed for performance, capacity and scalability during development.	> Provides agility in support of business growth and changes to the business and technical requirements.
+> Provides for a variety of appropriately sized software and technical solutions to satisfy business requirements and service levels.
+> Allows identification and projection of resources required to maintain projected business volumes.
+> Increases customer satisfaction.
+> Achieves consistent delivery of required service levels in support of both increasing and decreasing requirements.
+> Promotes reuse of software components.	> Scalability requirements may increase the initial costs of development and implementation.
+> Scalability requirements may limit the choices of vendors and technologies that can be used.
+> Appropriateness must be determined through business solution requirements.
+> Aetna must support a heterogeneous technology environment.
+> Aetna must develop formal processes for renegotiating operational support and service-level agreements.
+> Aetna must develop mechanisms and a process for performance testing at both the atomic and aggregate levels of the architecture.
+> Performance and Capacity Planning must participate in both the design phase of new development and in planning and implementation of major changes to existing applications, components and services.
+> Design and configuration guidelines must be established to assist application, component and service development during the initial design phase.
+ Software Must be Secure	Software must utilize secure communications and protection (authorization, authentication, data integrity, privacy and confidentiality) of information and technology, as necessitated by business or regulatory requirements.	> Meets the requirement that Aetna must assure confidentiality and integrity of member/constituent and business proprietary data.
+> Preserves the value of software resources and enterprise data by protecting them.
+> Protects Aetna’s corporate reputation by ensuring that important constituent information conveyed over the Internet  is accurate, reliable and available only to those with a specific need and legal right to know.
+> Ensures compliance with legislated regulations such as HIPAA.
+> Recognizes that Aetna agencies, representatives, and business partners must comply with legal requirements, policies and regulations pertaining to confidentiality, integrity and availability.	> The software architecture must adhere to an open, standards-based security solution to protect enterprise data and user information.
+> The software architecture must adhere to standards to protect data resources and communications.
+> Software must be designed to incorporate infrastructure technologies for encryption, authentication and authorization.
+> Software solutions must adhere to auditing and traceability best practices so that all actions are linked to the initiating user or system.
+> Single sign-on and usability must be accounted for in any security architecture service.
+ Software Must be Well-Defined and Loosely Coupled	Software applications, components, services and objects must possess loosely coupled integration points through well-defined (and standardized) interfaces.	> Recognizes the likelihood that the volatility of technologies and other uncertainties will also cause the continuous evolution of software designs.
+> Provides a contractual architecture for offering and consuming software as services.
+> Avoids brittle integration solutions.
+> Allows Aetna to replace and enhance components without having to redo the entire infrastructure.
+> Allows components to be replaced without undue impact on other applications or functionality.
+> Makes creation, validation, maintenance and reuse of components, patterns and frameworks easier to accomplish.	> Frameworks and patterns must be developed or selected to help with software design and direction.
+> Aetna must define or adopt an interoperability model that includes both technical and business interface requirements (APIs or protocols vs. semantics and service level agreements).
+> Integration standards must be created and applied to the software process.
+> Design and implementation walkthrough/review teams must be available to aid the software process.
+> A process for refactoring existing, tightly coupled applications must be developed.
+ Software Must Support an N-Tiered Model	Software applications, components and services must be designed, developed and implemented in support of an n-tier model.	> Changes can be made to one tier of an application without affecting other tiers, allowing for changes to the business application without changing its clients.
+> Services are consumed at the business function level, not at an application level.
+> Applications can be assembled from a business component and services repository.
+> Allows components and processing to be distributed.
+> Allows for support of multiple access channels, such as PDAs, phones and personal computers.
+> Allows for the reuse of software components across different tiers and within tiers of the model, allowing for the creation and reuse of common user interfaces and components across multiple business applications and presentation elements that can be incorporated into multiple user interfaces.	> Aetna must adopt a formal software development process that enables the independent development of components for each tier. Infrastructure must be included in the design process to ensure the proper mapping of application tiers to hardware.
+> Aetna must create a repository of components and services and institute a component and service management process.
+> Aetna must include feature rich user interfaces that do not possess business logic and are separate components from business components and services. Thin-client, fat-client and smart-client user interfaces will be used as necessary.
+> Aetna must implement a framework that separates components and services into tiers or zones. The user interface must be one of those tiers.
+> Aetna must provide a user interface that can be easily customized to accommodate a user's needs and (line-of-business or personal) preferences.
+> Layers or tiers can involve different hardware configurations or types.   Software needs to be deployable on different hardware configurations or types.
+ Technology Must be Standards-Based	Software must incorporate industry-accepted technology standards and an open architecture.	> Reduces reliance on specific vendor implementations and proprietary technology.
+> Reduces technology risk.
+> Provides software development areas with guidance regarding what technologies and tools can be used.
+> Provides flexibility in choosing development tools.	> Aetna must invest in a process for examining, adopting, promoting and integrating technical standards.
+> Aetna must implement a review process that ensures that all development projects are adhering to approved standards.
+> Aetna must establish criteria for evaluating vendor products and their compliance with accepted standards.
+
+==================================
+
+
+
+Principle	Statement of principle	Rationale	Implications
+ Technology identification, evaluation, and acquisition should follow the Standard EA processes.	The introduction of new technologies is done at the intersection of business strategies, Aetna’s technology environments, and emerging technology ecosystems.	
+> Enables Aetna business strategies and goals.
+> Promotes fiscal responsibility in the introduction and use of technology.
+> Promotes adherence to recognized architecture best practices.
+> AIS 3 Year Plan: Technology identification processes assure that technologies serve as an enabler for the business and promote competitive advantage through innovation.
+> The Technology Blueprint process aligns strategic business needs with infrastructure plans and simplifies the technology portfolio.
+> The PESP (produce identification process) assures an objective assessment of technologies and products against immediate business goals. It also provides opportunities to suggest technology solutions that align project objectives with overarching enterprise-level initiatives.
+ Technology choices must focus on business enablement and innovation.	A key driver of technology blueprint strategies, evaluations, and acquisitions should be the ability to enable business strategy and innovation, balancing time to market with viability.	
+> Ensures technology investments have strategic alignment with evolving business goals.
+> Anticipates business needs, allowing quicker response to business initiatives
+> Provides agility in support of business growth and changing business strategy.
+> Supports quicker time to market
+> Proactive enablement of business needs as they happen.
+> Product choices that readily adapt to a variety of business scenarios.  
+> Positions Aetna to achieve business strategies over the next 3 years
+> Avoids constrictive (i.e. proprietary; narrowly focused) or long tailed approaches (i.e. requiring extensive customization or integration work).
+ Facilitate integration while increasing options to use pre-built solutions and reducing complexity.	This principle encompasses standards-based integration with Commercially-Off-the-Shelf (COTS) solution and external entities to reduce complexity	Standards-based integration reduces complexity, increases speed to market and cost of ownership	
+> Technology selection must ensure that we evaluate and select products or service that interoperate with one another using industry standards
+> Interoperability using industry standards eliminates one-off connectors or adapters, and reduces the complexity of integration
+ Provide loose coupling between applications and infrastructure components	This principle is about eliminating point to point integration between applications and technology components 	
+> Loose coupling will reduce application and infrastructure complexity
+> Loose coupling will decrease the application maintenance cost and increase the speed to market
+> Loose coupling must be enforced while designing and developing applications
+> Loose coupling must also be enforced while integrating external vendor products or services with in-house applications.
+ Manage Technical Debt effectively.	The addition and removal of technical debt needs to be handled in a purposeful way.	
+> All non-strategic acquisitions of technology introduce some level of technical debt
+> Managing the level technical debt by retiring or maintaining non-strategic needs to part of a larger plan
+> Blueprinting activities need to account for current and proposed technical debt.
+> When choosing a non-strategic product, the technical debt issue must be raised during the selection process
+> When markets are immature, there will be times when it makes sense to actively pursue solutions that may be used for a limited period of time. The impact of unmanaged solutions of this type may increase considerably if not managed properly.
+ Technology must support compliance with Aetna’s policies governing its security, confidentiality, privacy and regulatory requirements	A technology component must never enable security breaches, unduly expose protected information, predispose a configuration that violates Aetna security and data protection policies, or inhibit compliance with existing regulatory controls. Where appropriate, technology components should facilitate compliant behavior and assist in the execution of enterprise governance practices	
+> Supports security and confidentiality policies
+> Contributes to a compliant information management ecosystem
+> Enables compliance with legislation that requires privacy and confidentiality of data, and preservation of business records, as defined by a classification scheme and applicable regulations
+> Facilitates compliance with regulatory reporting requirements and the rules governing legal discovery
+> Enables use of the technology component by multiple consumers and applications without creating security risks that must be evaluated before an application can be permitted to go into production, thus realizing standardized security models and economies of scale
+> Candidate technology must be vetted for its ability to operate according to IT Security mandates, including role-based authorization, access controls, authentication certificates, secured transports, encryption, and the systemic mechanisms that enable these
+> Candidate technology must be vetted to ensure that its installation and operating requirements do not presume root access, isolated middle tier, isolated host machine, database system administrative grants, cross-domain access, network administrator privileges, or any other such highly-protected roles
+> Candidate technology must not operate opaque to security monitoring, audit, and risk management controls
+> Where appropriate, candidate technology must be able to align its behavior with codified and persisted policies
+> An established technology should not be reassessed for its security compliance unless there is a significant architectural change presented by a new, major release
+> An established technology should not be subject to a reassessment during each project that instantiates its use
+> These implications apply to all forms for hosting, including enterprise, on-premises-virtualized, external service providers, and hybrids of these
+> These implications apply to all locales where the technology is deployed, i.e. in every nation where Aetna operates as a business and consumes the technology in question
+ Provide strategic technology capabilities that can be adopted enterprise-wide.	The benefit of addressing strategic requirements with technology that can be adopted enterprise wide reduces complexity, integration and adoption barriers and provides a consistent technology posture across business, department and external entities.	
+> Reduces complexity of integration within the company
+> Provides the company with a comprehensive toolkit of applications meeting the broadest requirements
+> Promotes adherence to recognized architecture best practices.
+> AIS 3 Year Plan: Has the potential for reducing  the number of applications required for each employee to perform enterprise functions such as electronic communication, collaboration and content management
+> Allows for a more consistent strategy on technology adoption based upon the current and future requirements and capabilities of the technologies deployed
+
