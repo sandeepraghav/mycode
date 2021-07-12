@@ -1,0 +1,1206 @@
+  APIConnect designers guide
+Table of Content
+
+1	APIConnect New User Guide	4
+2	New user request	4
+2.1	Getting AETHQ Password	5
+2.2	Accessing APIConnect	5
+2.3	Accessing the Portal	5
+3	Getting Started	6
+4	List of Available Products	7
+5	Setting New\Current Product Visibility	9
+6	List of Available APIs	13
+7	Parameters	14
+8	Sample Response (and Request if needed) Section	18
+9	Request a New API Name	21
+9.1	Cross Domain Integration	21
+9.2	Enterprise vs Opportunistic	21
+The Following sections are for individual API type creation.	22
+10	EDB IIB XML services using DPIM\DIM data structures – Scenario 1	22
+11	REST/JSON IIB service with no DPIM\DIM – Scenario 2	57
+12	RSA Swagger Generated or Non-IIB Rest service – Expose service via APIConnect – Scenario 3	64
+12.1	Mapping to Service Definitions	69
+13	SOAP service (any source) to SOAP API – Scenario 4	74
+14	SOAP Service (any source) to REST API – Scenario 5	77
+15	Clone any API	89
+16	API Caching	94
+17	Add/Edit a Product	94
+18	Publish the API	102
+19	Backup the API\ Swagger file	103
+20	IA/APIC Design Handoff Process	107
+
+Change Date
+Change By	Change Comment
+Nov-2-2016	Stephen Waldern	New Section added for Clone and API
+New Section added for Change Management
+Remove Draft Watermark background
+Nov-17-2016	Stephen Waldern	Added a link to process of how to create a WSDL file for import as the Service.
+Dec-8-2016	Stephen Waldern	Update screenshots for new version of APIC.  
+Dev-28-2016	Stephen Waldern	Updates for creating Response section
+Mar-15-2016	Stephen Waldern	Update link to APIC development servers
+May-09-2017	Stephen Waldern	Add text to STRESS that Service and API name must come from ESA and must be used.
+Jun-7-2017	Stephen Waldern	Updated API support:  When to use Opportunistic or Enterprise API.
+Jun-14-2017	Stephen Waldern	Added a new section for the APIConnect COE review of the User Guide.
+Remove the Publishing Section and Replace with a link to the COE APIConnect User Guide document.
+Cross Domain Managed API information has been posted.
+Aug-24-2017	Stephen Waldern	Update to Invoke description on page 25 to provide additional information.  Format updates to Headings, fonts…
+Oct-25-2017	Stephen Waldern	Note to direct all request for Hehe and Core to APIC support rather than directly to APIC personnel
+Nov-28-2017	Stephen Waldern	Updates to HeH and Portal links and directions
+Dec-04-2017	Stephen Waldern	Updates for Section 10 APIConnect changes
+Dec-19-2017	Stephen Waldern	Updates for API Caching
+Jan-02-2018	Stephen Waldern	Updates for setting Product Visibility
+Feb-07-2018	Stephen Waldern	Additional updates for setting Product Visibility
+Mar-07-2018	Stephen Waldern	Updates for Application\User token for JWT specification
+May-16-2018	Stephen Waldern	Updates for Swagger File backup, SLA updates and fix link for WSDL creation.
+May-23-2018	Stephen Waldern	Updated Contact information process
+Jun-06-2018	Stephen Waldern	Updates for HeH Product Creation 
+Jun-08-2018	Gerrie Ouellette	Updated for setting rate-limits under Default Plan and for setting Visibility.
+Jul-20-2018	Ravi Penmetsa	Addition of the API Handoff to Developers table.
+Aug-06-2018	Gerrie Ouellette	Changed rate-limit to per hour.  Added more detail to explanation around setting rate limits.  Added new screen prints.
+Added more detail for documenting the Response elements in the APIC design along with screen prints.
+Added the HTTP & Cache Type to the Invoke properties that need to be set.
+Updated Headings by removing CMM and Old Style. 
+Oct-4-2018	Roy Klein	Added supplying the needed Development Provider Organization when requesting Access to HeH and Core APIC.
+Dec-13-2018	Stephen Waldern	Update hyperlink for WSDL generation to a document that is stored on the AD SharePoint site rather than a Unily document.
+Jun-19-2019	Stephen Waldern	Updated information for Swagger definitions and import into APIC.
+Jun-19-2020	Stephen Waldern	Add note to define a maximum number of APIs per product
+Mar-11-2021	Stephen Waldern	Add step to import a Realization for Swagger
+April 1, 2021	Roy Klein	Removed Not from not checked on enforce hard limits. Page 102
+April-6-2021	Stephen Waldern	Update Access request process for APIConnect.
+April-9-2021	Stephen Waldern	Update import process of Realizations to remove duplication and clarify Swagger process
+
+ 
+1	APIConnect New User Guide
+This is maintained by the APIConnect COE and should be reviewed before moving forward in this document.
+•	Publish API 
+•	This will open the APIC User Guide that is COE authored and maintained.
+•	Navigate to section 5 API Publishing and Application Subscription 
+2	New user request
+•	Fill Out new user access form found here
+•	Send email will attached for to APIC Access Request APICAccessRequest@AETNA.com
+
+  
+2.1	Getting AETHQ Password
+•	You need to use your AETHQ Password. Set it at: adhelp.aetna.com or just adhelp
+•	When you log into the portal you use your email address and AETHQ password.
+•	To create or change you AETHQ password go:
+o	http://adhelp.aetna.com/
+o	Select: Self-Service AETHQ password resent
+2.2	Accessing APIConnect
+•	If you are working in Core you can sign in to API Connect with this url:
+•	https://devapi2mgt.aetna.com/apim/
+a.	Core login uses your Aetna ID as your login id.  Ex: A999999
+
+•	If you are working in HeH you can sign in to API Connect with this url:
+•	https://devapimgt.healthehost.com/apim/%23/design/apis/
+a.	HeH login uses your Aetna email address as your login id.  Ex: jdoe@aetna.com
+
+•	See below to select the appropriate work environment. 
+2.3	Accessing the Portal
+•	Select Dashboard
+ 
+
+•	Select the correct catalog that you are working in 
+•	Select Settings on the Menu
+ 
+
+•	Select Portal
+ 
+
+
+
+•	Use the register account tab and register using your email address and the QA password. You will get emailed a link to sign on to the portal. Ignore the red error message at the top of the page.
+•	Please direct all access APIC requests for Hehe or Core to APIC-Non-Prod Support APIC-Non-ProdSupport@AETNA.com
+•	You will need to specify the Development Provider Organization(s) you will need access to when requesting access. If in doubt, reach out to the Integration Domain Lead(s) you are working with.
+3	Getting Started
+•	Log into API Connect
+•	Click Three bars on the Title Bar
+ 
+
+•	Use the Dropdown to connect to the correct Provider Organization
+
+
+ 
+•	If you are designing in HeH environment select the organization which corresponds to the provider data.
+•	If working in Core – select devpath1
+•	If working in HeH – select Sandbox
+
+ 
+
+4	List of Available Products
+
+•	Click Three bars on the Title Bar
+ 
+
+•	Click on Drafts
+ 
+
+•	Click on the Products tab to see a list of available Products 
+ 
+
+ 
+5	Setting New\Current Product Visibility
+•	Visibility settings and guidance is found in the API Connect Product Visibility folder found  here
+•	Setting visibility for Current Products
+•	Click Three bars on the Title Bar
+
+  
+
+•	Select Dashboard
+ 
+•	Select the Sandbox catalog
+•	Find the IA specific product you want change
+•	click on Edit (3 vertical dots, far right of the product), >Edit visibility >  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+•	Set Visible to: dropdown> select, Authenticated (Developer Portal)
+•	Set Subscribable by: dropdown> select, Authenticated (Developer Portal)
+ 
+•	Select Republish
+
+ 
+•	Setting visibility for New Products
+•	Click Three bars on the Title Bar
+
+  
+
+•	Select Drafts
+ 
+
+•	Find the IA specific product you want change
+•	Select Visibility in the left-hand column
+•	Set Visible to: dropdown> select, Authenticated users
+•	Set Subscribable by: dropdown> select, Authenticated users
+ 
+ 
+6	List of Available APIs
+•	Click Three bars on the Title Bar
+ 
+
+•	Select Drafts
+ 
+
+•	Click APIs tab.
+ 
+
+•	Use the API filter (far righthand side of window) under Type to show the type of APIs to display.
+ 
+
+•	Go to the scenario that describes the kind of API that you need to create.
+ 
+7	Parameters
+Overview:
+Depending on the API you are trying to create, the location of the parameters for the Input map may be located in different areas of the API.	
+
+Mixed Parameters in the PATH and Parameters section
+There will be cases where parameters for each operation (GET, PUT, POST, DELETE) will be located within the operation as well as the parameters section.
+
+ 
+ 
+ 
+ 
+
+Parameters in the PATH
+If all operations (GET, PUT, POST, DELETE) built in the PATH section will use exactly the same parameters, enter the parameters in the path.
+ 
+ 
+Parameters in the Parameters section
+If and API has multiple Paths with\without multiple operations (GET, PUT, POST, DELETE) built in the PATH section that will use different Input parameters, enter the parameters in the parameter section.
+ 
+ 
+Parameters in the Definitions section
+If an API has one or multiple Paths with or without multiple operations (GET, PUT, POST, DELETE) within the PATH section that will use an OBJECT property in the input parameters, enter the parameters in the Definition section.  Only one Object property is permitted in any single operation.
+ 
+ 
+8	Sample Response (and Request if needed) Section
+•	Create a Response definition to provide meaningful example data for the API response attributes – this will help improve the API consumer experience
+•	Follow the same steps to create a Request definition when designing a PUT or POST
+•	You should have generated a loop back file in the original service generation
+•	Trim the EIE Header, Status fields (and root element, keep only from the read/update/delete tag) and Namespace prefixes from the loopback file.
+•	This loopback will not recognize arrays.  Arrays have to be manually created in the XML file by adding a second occurrence of the array object.
+•	Create a response definition and title it [servicename]Response depending on the operation you are using.
+ 
+
+•	Paste the XML response into the definition and remove any attributes that the definition may have created 
+•	Click on Generate
+ 
+ 
+•	Under Schema as YAML view, remove all occurrences of  ''xml:           namespace: '' and “example:” attributes
+ 
+
+•	Correct the element types (every element is string by default when added this way) 
+•	Add a description (can be copied from DIM XSDs)
+•	Add an example for each element
+•	Enumerations and formats can also be specified as per business need
+•	click Done when finished
+ 
+
+•	This is how the response should look in the developer portal
+•	Snapshot from Developer Portal
+ 
+
+
+ 
+9	Request a New API Name
+
+Before Requesting a New API, make sure that an API does not already exist that will meet your requirements.  See the two sections above on Lists of Available Products and Lists of Available APIs.
+Beginning Monday, October 30th 2017, all new requests for API and service names are to be submitted using the “API/Service Name Requests” list found on the EAA SharePoint site at 
+https://aetnao365.sharepoint.com/sites/Solution_Integration/Lists/APINameUpdates/All%20Grouped%20by%20Request%20Status.aspx?InitialTabId=Ribbon%2EListItem&VisibilityContext=WSSTabPersistence
+Additional information is found here:
+https://aetnao365.sharepoint.com/:w:/r/sites/Solution_Integration/Tooling/API%27s%20and%20Services/APIService%20Name%20Request%20Guide.docx?d=w1757a483c06c4cb1aad8b779c4abd498&csf=1&web=1&e=SPmbDd
+9.1	Cross Domain Integration 
+•	Must be performed via managed APIs
+•	SOEs (Systems of Engagement) must access any service via managed APIs
+•	SOI (Systems of Insights) and SORs (Systems of Record) must access cross domain services via managed APIs
+•	Orchestration services may access cross domain orchestration and data acquisition services directly,  if the removal of the API call actually will bring the service into compliance with the needed SLA
+•	No application or service should access cross domain data stores directly
+ 
+This will allow
+•	an EDB service to access other EDB service directly without going back to API layer
+•	an EDB service to access other domain first class services (data access services) without going back to API layer
+9.2	Enterprise vs Opportunistic
+•	Double to check to make sure the API does not already exist.
+•	APIs designated as “Opportunistic” are designed for a single application to use and therefore must not be visible to others outside of the targeted group of Consumer Application Developers that the API was created for.
+•	APIs designated as “Enterprise” are designed for numerous applications to consume and are available to all Application Developers.
+•	If another consumer wants the same pay load as the previous sentence indicates an additional opportunistic API will be created for that consumer as well.
+•	The basic rule is that only one consumer will be entitled to use an opportunistic API.
+API Type	Consumers	Payload	Notes
+Enterprise	Multiple	Full	
+N/A	Multiple	Tailored	Not allowed by our standards
+N/A	Single	Full	Just use Enterprise
+Opportunistic	Single	Tailored	
+
+The Following sections are for individual API type creation.	
+10	EDB IIB XML services using DPIM\DIM data structures – Scenario 1
+Overview:  The IA gets the.zip file with the WSDL included
+	See the steps on how to create a WSDL by going to this link.
+	The IA enters the inputs using the APIC UI to define the API.
+Note:  The UI is probably preferred, but manual Swagger may prove easier for the more experienced.
+	The IA Imports the zip file into APIC as service.
+	The IA maps the Inputs to the outbound service.
+	The IA maps the response from then Invoke to the return of the API.
+	The IA accommodates JSON/xml transformation.
+	The IA specifies the security at the API level.
+	The IA Turns API over to development but governs throughout lifecycle.
+
+
+•	There should\might be a zip file located within the EDB service.  If the zip file is older than the XSD or not present please see the steps above on creating a WSDL file, as shown in RTC.  
+
+•	This API is created in APIConnect
+•	Click Add -> New OpenAPI from scratch
+ 
+ 
+•	Enter the API Title - See section above on requesting a new Service or API Name. The name is assigned by ESA (see Request a New Service or API Name in the previous step) and MUST be used.
+•	The Name is automatically loaded based on the title (Preface with /IA)
+•	Enter the Base Path (Preface with /IA)
+•	Enter the Version number
+•	Expand the Additional properties
+o	Verify the information and update as necessary
+o	Update the Security to indicate application token or user token needed.
+	If user token, specify when JWT is needed.
+ 
+ 
+•	Click Create API
+ 
+•	The API opens for additional information to be added.
+ 
+ 
+•	Scroll down through the API information screen…
+•	Enter a Description for the API
+ 
+•	If you are the original creator of the API Insert your name into the Name field and your email address into the Email field.
+•	If you are updating the API place your name first and move the last person’s information to the right in the Name and Email field.
+•	Leave the URL blank
+ 
+ 
+ 
+Always check the application/JSON button.  If the API is being configured to accept XML, check the application/XML button also. 
+Always check the application/JSON button.  If the API is being configured to accept XML, check the application/XML button also. 
+Complete security section
+ 
+ 
+•	Add a Path
+o	See the section on Parameters for additional information on handling parameters
+ 
+•	Add any additional operation by clicking add operation.  
+ 
+•	Parameters and Definition – See the parameters section
+•	Go to Sample Response Sections
+ 
+•	Click the Plus sign to add a Service
+•	Upload the WSDL zip file which was saved to your local folder.
+ 
+•	After Import
+ 
+
+ 
+Assemble – Each Operation (GET,PUT,POST,DELETE) of the API should have an Input Map an Invoke and an Output Map.  Additionally your API may have to accommodate XML and JSON.
+ 
+•	Select the DataPower Gateway policies to get the Map operation option.  Use the drop down to display and hide this option.
+ 
+NOTE: When you drag an operation from the tool box to the design area, place the operation within the dotted square that appears.
+  
+ 
+•	If the API supports more than one operation (GET, PUT, POST, DELETE) use the operation switch. Otherwise skip adding the operation switch and move to the Invoke.
+•	Add an operation-switch component
+•	This will be used to hold each operations input and output
+ 
+•	Add a Title for the operation
+•	Add a Case for each operation
+ 
+ 
+•	 If no operation switch is in use, just add a single Invoke
+ 
+•	If an operation switch is in use, add an Invoke into the get “Case” operation
+ 
+ 
+
+•	Click on the Invoke to enter the Invoke’s
+o	Title
+o	Description – ex: Invoke the EDB Service {Service Name} service.  For example, /v1/edb/memberships/{id} 
+o	URL
+o	HTTP Method – select POST from the drop-down (Typically, the communication between API and EDB services developed using IIB is via POST.)
+o	Cache Type – leave blank or set to “No Cache” 
+o	Time to Live – leave blank or set to 0
+ 
+
+
+ 
+•	Click the “X” on the top right-hand corner to close the Invoke properties
+•	Duplicate the invoke by pointing to it and clicking on the duplicate icon
+ 
+ 
+•	Drag the duplicated Invoke to the “put”
+ 
+ 
+•	Edit the new Invoke and update its properties
+o	When you change the title the “getRequest” will change to the new title “putRequest”
+
+ 
+•	When completed it should appear like this
+ 
+ 
+•	Add Map to the Left of the Invoke(s).
+•	If no operation switch is in use, just add a single map
+ 
+
+•	If an operation switch is in use, add a map into the get “Case” operation
+ 
+•	Click on the map to the Left of the Invoke within the PUT case operation.
+•	Click the Configuration icon to update the Map Title and Description.
+
+ 
+•	Enter the Map’s 
+•	Title – Ex: getMembership
+•	Description
+ 
+•	Click Done
+•	Click on the +input button to enter the input information
+•	Click on the “Pencil” icon on the Input tab
+  
+•	For each Input Map enter the Map’s
+o	Context request.parameters.{parameter name}
+	Parameter name would represent the actual name of an input parameter.
+o	Content type – none
+o	Definition – string, datetime…..
+  
+•	Click Done
+•	Click on the top map to the Left of the Invoke.
+•	Click on the “Pencil” icon on the Output tab
+ 
+•	Click on the +output button to enter the output information
+ 
+ 
+For each Output Map enter the Map’s 
+o	Context variable
+o	Name
+o	Context type should match the service’s message format.  (“application/json” or “application/xml” should be entered for an output map)
+o	Definition
+•	Use the Definition dropdown to select the “Output” side of the mapping
+o	This depends on the request structures of the WSDL that you have imported.
+o	Ex. #/x-ibm-configuration/targets/MembershpRESTSvc/definitions/membershipInput
+ 
+
+•	Click Done
+
+ 
+•	Currently Arrays are an issue and do not map.
+•	This example uses just a single ID field, but if there is multiple input parameters map each input to the corresponding output.
+•	Review the Domain Identifiers spread sheet to determine the order of the Identifier and Source.
+•	Within the “Map” area of the Input map click on the gray dotconnect the Input id string to the Output map idValue and idSource.  In this case the id has two parts.
+  
+•	Double click on the “dot” to enter the default idType field.
+ 
+ 
+•	If the mapping has multiple parts, Use the configure mapping to split the input parameter.  Double click on the output point to configure.
+ 
+
+idSource would be found using this split.  idValue would have [1] as it is the second part of the split.
+ 
+•	Click the X to close the window
+•	When completed it should look like this.
+ 
+•	Following the steps of duplicating the Invoke, duplicate “getMembership” map and drag it into the “put” case.
+•	When completed it will look like this
+ 
+
+•	Update the map accordingly
+ 
+•	Click on the get map to the Left of the Invoke.
+•	Click the Configuration icon to update the Map Title and Description.
+
+ 
+•	For each Input Map enter the Map’s
+o	Title –Ex putMembership
+o	Description
+•	Click Done
+•	Click on the “Pencil” icon on the Input tab
+ 
+•	Click on the +input button to enter the input information
+o	Name
+o	Context request.body
+o	Content type – none
+o	Definition -#/definitions/Memberships
+ 
+ 
+•	Click Done
+ 
+•	Click on the bottom map to the Left of the Invoke.
+•	Click on the “Pencil” icon on the Output tab
+ 
+•	Click on the +output button to enter the output information
+•	For each Output Map enter the Map’s 
+o	Context variable
+o	Name
+o	Context type should match the service’s message format.  (“application/json” or “application/xml” should be entered for an output map)
+o	 Definition
+•	Use the Definition dropdown to select the “Output” side of the mapping
+o	This depends on the request structures of the WSDL that you have imported.
+o	Ex. #/x-ibm-configuration/targets/MembershpRESTSvc/definitions/membershipInput
+
+ 
+
+•	Click Done
+ 
+
+•	Within the “Map” area of the put Input map click on the gray dotconnect and pull a line over to the output side of the operation.  Complete this for each “input” definition.
+ 
+•	Click the X to close the window
+•	When completed it should look like this.
+ 
+ 
+•	Add a switch to the right of the Invoke(s)
+ 
+•	If the API needs to support both JSON and XML message types: do the following.  Otherwise ensure that the default output format is JSON
+•	Click on the “switch” in the “get” above and enter appropriate information.  In this case the returning information will be XML.
+•	Click “edit condition” to enter the condition information.  Click Done.
+ 
+•	Copy and paste this into the condition editor
+o	request.headers.accept==’application/xml’
+  
+•	Click “+otherwise” to allow the default “json” to be returned.
+•	When complete it should look similar to this.
+ 
+
+•	Add a Map to the getRequestSwith that returns xml.
+•	Click on the map to update
+  
+ 
+•	Click on the map within the getRequestSwitch that return XML to edit.
+•	Click the Configuration icon to update the Map Title and Description.
+ 
+•	For each Input Map enter the Map’s
+o	Title –Ex getMembershipResponseXML
+o	Description
+•	Click Done
+•	Click on the “Pencil” icon on the Input tab
+•	Click on the +input button to enter the input information
+ 
+•	For each Input Map enter the Map’s
+o	Name - input
+o	Context – message.body
+o	Content type – application/xml or application/json depending upon the message format of the service.
+o	Definition - 
+	Ex: #MembershpRESTSvc/definitions/membershipResponse
+	This depends on the response structures of the WSDL that you have imported.
+   
+•	Click Done
+Click on the first map within the getRequestSwitch that return JSON to edit.
+•	Click on the “Pencil” icon on the Output tab
+ 
+Click on the +output button to enter the output information
+•	For each Output Map enter the Map’s
+o	Context variable – message body
+o	Name - output
+o	Context type - application/xml
+o	Definition
+	Ex. #/x-ibm-configuration/targets/
+
+ 
+
+•	Click Done
+ 
+•	Click on the first map within the getRequestSwitch that return xml to edit.
+•	Within the “Map” area of the Input map “getRequestSwitch“ 
+o	Click on the gray dotconnect on the Input map and attach to the Output gray dotconnect on the Output map to identify how the Input leads to the Output.
+    
+
+•	Click the X to close the map.
+•	Your Assebmbly should look similar to this.
+ 
+
+•	Save the API
+ 
+•	Following the steps of duplicating the Invoke, duplicate “getMembershipResponseXML” map and drag it into the “otherwise” case.
+•	Click the Configuration icon to update the Map Title and Description.
+ 
+•	For each Input Map enter the Map’s
+o	Title –Ex getMembershipResponseJSON
+o	Description
+•	Click Done
+•	Click on the newly added map within the getRequestSwitch that return JSON because of the “Otherwise” to edit.
+•	Click on the “Pencil” icon on the Input tab
+  
+•	Click on the +input button to enter the input information
+•	For each Input Map enter the Map’s
+o	Name - input
+o	Context – message.body
+o	Content type – application/json or application/xml depending upon the message format of the service.
+o	Definition - 
+	Ex: #MembershpRESTSvc/definitions/membershipResponse
+	This depends on the response structures of the WSDL that you have imported.
+  
+•	Click Done
+•	Click on the second map within the getRequestSwitch that returns JSON because of the “Otherwise” to edit.
+•	Click on the “Pencil” icon on the Output tab
+
+  
+•	Click on the +output button to enter the output information
+•	For each Output Map enter the Map’s
+o	Context variable – message body
+o	Name - output
+o	Context type - application/json
+o	Definition
+	Ex. #/x-ibm-configuration/targets/MembershpRESTSvc/definitions/Membership
+ 
+
+•	Click Done
+•	Click on the second map within the getRequestSwitch that returns JSON to edit.
+•	Within the “Map” area of the Input map “getRequestSwitch“ 
+o	Click on the gray dotconnect next to each attribute that needs to be returned on the input map and attach to the appropriate attribute on the output map to identify how the Input leads to the Output.
+o	
+   
+•	Click the X to close the map.
+•	Your Assebmbly should look like this.
+  
+•	Save the API
+ 
+•	The Steps to build out the PUT part are exactly the same.  The differences would be:
+o	The Definition of each Input\Output map
+	Ex: #MembershpRESTSvc/definitions/identifierOutput
+o	Accounting for “STATUS” when doing the mapping.
+
+ 
+
+•	When you have completed all of the steps from above to build out the “PUT” the final version would like similar to this.
+ 
+•	Save the API
+•	Close the API
+•	The IDL should have provided a product name in the naming request
+•	Add a product if a new product is required
+•	Edit the Product information
+•	Publish the API
+ 
+"New style" REST/JSON IIB services using DPIM data structures – This is still a work in process - Scenario 2 - (Under development relies on IIB 10)
+Overview:
+IA transforms the XSDs to JSON Schema (Swagger document?) 
+<CHFJr>Swagger Schema might prove more useful. Some JSON schema produces wonky XML</CHFJr>
+IA Imports the JSON Schema into APIC as service <CHFJr>”inlines” the JSON Schema in a map policy</CHFJr>
+
+The IA Deploys the service within IIB
+The IA Pushes the service definition to APIC
+
+The IA maps the Inputs to the outbound service.
+The IA maps the response from then Invoke to the return of the API.
+The IA accommodates JSON/xml transformation.
+
+The IA Turns API over to development but governs throughout lifecycle.
+The IA specifies the security at the product level.
+
+Hand data entry of inputs in APIC to define the API by IA <CHFJr>See above</CHFJr>
+IA Delivers JSON Schema to Development for IIB definition
+IA Turns API over to development but governs throughout lifecycle
+ 
+11	REST/JSON IIB service with no DPIM\DIM – Scenario 2
+Overview: IA designs the service in IIB V10
+IA Pushes the Swagger Document to APIC
+Hand data entry of inputs in APIC to define the API by IA
+IA Turns API and IIB service over to development but govern throughout lifecycle
+
+•	This API is created in IIB
+•	New REST API - See section above on requesting a new Service or API Name. The name is assigned by ESA (see Request a New Service or API Name in the previous step) and MUST be used.
+•	Add BasePath (Preface with /IA)
+ 
+
+•	In the Resources area click the (+) to add a REST operation [GET, PUT, POST or DELETE]
+ 
+
+
+•	Enter correct REST operation information 
+•	You will come back after the next few steps to enter the schema type.
+ 
+
+•	In the Definition area
+•	Add a new definition
+ 
+
+•	Select the new definition and click on the (+) to add fields
+ 
+
+•	Go back to the Operation and enter the Definition in the Schema Type
+ 
+
+ 
+
+•	Right Mouse Click on the Flow and create a subflow
+•	Name the Subflow after an operation
+•	Create one subflow per operation
+ 
+
+•	Double click on the Subflow
+•	Drag a Mapping onto the diagram
+ 
+
+•	Link the Input and Output to the mapping
+ 
+
+•	Add mapping
+•	Deploy the service
+ 
+
+•	Select the integration server
+ 
+
+•	It shows in the integration nodes
+•	Deploy to APIC
+ 
+
+•	Enter all information.  Click Next
+ 
+ 
+
+•	Select the correct Organization.  Click Finish
+ 
+
+•	Success message.  Click Close
+ 
+•	Save Changes
+•	Close the API
+•	Open APIC
+•	The IDL should have provided a product name in the naming request
+•	Add a product if a new product is required
+•	Edit the Product information
+•	Publish the API
+
+
+ 
+12	RSA Swagger Generated or Non-IIB Rest service – Expose service via APIConnect – Scenario 3
+
+Overview:	Design service interface using (appropriate) tool
+See the steps on how to create a WSDL by going to this link.
+Designer presents Swagger file or WSDL package or XSDs to IA
+If needed IA packages XSDs to WSDL
+IA Imports the Swagger or WSDL into APIC
+IA Turns API over to development but governs throughout lifecycle
+
+•	This API is created in APIConnect
+•	Click Add -> Import an existing OpenAPI
+ 
+
+•	Click Select File
+ 
+ 
+•	Browse to Swagger file.  Click Open
+ 
+
+•	Select the file and click Import
+ 
+
+•	The Swagger file will import and create the API.
+ 
+ 
+•	Open the API
+•	Base path section should have been identified in the swagger file
+ 
+
+•	Complete security section
+ 
+
+•	Paths section should have been identified within the swagger file
+ 
+
+•	See Sample Response section for output definitions
+
+ 
+Assemble – Click the Assemble
+ 
+•	Select the DataPower Gateway policies to get the Invoke operation option.
+ 
+NOTE: When you drag an operation from the tool box to the design area, place the operation within the dotted square that appears.
+  
+ 
+•	Add an Invoke
+ 
+•	Click on the Invoke to enter the Invoke’s
+o	Title
+o	Description – ex: Invoke the EDB Service {Service Name} service.
+o	URL
+ 
+•	Click the “X” on the top right-hand corner to close the Invoke properties
+•	The process is complete if this is a passthrough service, continue on with these steps,  Otherwise Save and close the API and continue on to the section for mapping to service definitions:
+•	Save Changes
+•	Close the API
+•	The IDL should have provided a product name in the naming request
+•	Add a product if a new product is required
+•	Edit the Product information
+•	Publish the API
+ 
+12.1	Mapping to Service Definitions
+If the service is defined with a WSDL proceed to import the service and map as described in Scenario 1.
+If the service is defined by a Swagger document:
+•	Go to Draft API folder
+•	Add a new Imported API
+ 
+•	Select the required Swagger document and open
+ 
+•	Import
+ 
+•	Click Explore
+ 
+•	Drafts
+ 
+
+•	Select the imported API in the left hand panel
+ 
+
+•	Copy the example needed (request\response) as needed
+ 
+
+ 
+•	Return to the original API, Go to the Assembly
+•	Add a Map
+•	Name appropriately
+ 
+
+•	Select the Input or Output depending on the direction of the mapping
+•	Click on Input
+ 
+
+•	Set the proper content type, name
+ 
+
+ 
+•	Within Definition, click the arrow and scroll up to select Inline schema
+ 
+
+•	Select Generate from sample JSON
+ 
+•	Paste the sample JSON you copied in the earlier step.
+ 
+•	Click Generate, Done
+•	Proceed to map as described in Scenario 1.
+•	The process is complete 
+•	Save Changes
+•	Close the API
+•	The IDL should have provided a product name in the naming request
+•	Add a product if a new product is required
+•	Edit the Product information
+•	Publish the API
+ 
+13	SOAP service (any source) to SOAP API – Scenario 4
+Overview:	WSDL given to IA or generated by IA using RSA first class SOAP service tooling
+IA Imports the WSDL into APIC as API
+See the steps on how to create a WSDL by going to this link.
+IA deselects undesired operations
+The IA specifies the security at the API level.
+The IA Turns API over to development but governs throughout lifecycle.
+This assumes that the First Class service already exists.  The WSDL defines the end point.
+
+•	This API is created in APIConnect
+•	Click Add ->  New OpenAPI from SOAP service
+ 
+
+•	Select Upload file
+ 
+
+•	Find the {WSDL}.zip file that you want to upload
+•	Select the file and click Open
+•	New API from WSDL dialogue should display with the SOAP service
+•	Select the service and click next
+ 
+
+•	Correct the Title and Name - See section above on requesting a new Service or API Name. The name is assigned by ESA (see Request a New Service or API Name in the previous step) and MUST be used.
+ 
+
+
+•	Click on the Base Path (Left menu area) and enter the correct base path (Preface with /IA)
+
+ 
+
+•	Click on the Paths (Left menu area)
+•	See the section on Parameters
+•	Remove any operations that you do not wish to expose.
+•	Save the API
+ 
+
+•	Save Changes
+•	Close the API
+•	The IDL should have provided a product name in the naming request
+•	Add a product if a new product is required
+•	Edit the Product information
+•	Publish the API
+
+
+
+ 
+14	SOAP Service (any source) to REST API – Scenario 5
+Overview:	IA creates API in APIC 
+See the steps on how to create a WSDL by going to this link.
+IA Imports the WSDL into APIC as service
+Hand data entry of inputs in APIC to define the API by IA
+The IA specifies the security at the API level.
+The IA Turns API over to development but governs throughout lifecycle.
+
+•	This API is created in APIConnect
+•	Click Add ->  New OpenAPI from scratch
+ 
+
+•	Enter an appropriate title and name based on the information that the API will expose in the “Info” section.  	See section above on requesting a new Service or API Name. The name is assigned by ESA (see Request a New Service or API Name in the previous step) and MUST be used.
+
+  
+
+•	Common system errors are captured in a pdf document and location of the same must be specified in the documentation for all the APIs as external documentation as below
+
+ 
+
+•	https://eaintegrationgovernance.github.io/APIC-Common-Error-Codes.github.io/
+
+•	Enter an appropriate path in the “Base Path” section
+ 
+
+•	Click “Add Operations” in the “Path” section.
+•	Enter Path, 
+ 
+
+•	Click “Add Parameter” 
+•	Enter the parameter information
+•	See the section on Parameters
+ 
+
+•	Click (+) in the “Services” section
+ 
+
+•	Click Upload file
+ 
+
+•	Select the WSDL (This should be a .zip file) created from “WSRR” stream “Service IF” component in RSA.
+•	Click Open to import the service.
+ 
+
+•	Click Done
+Assemble – Click the Assemble
+ 
+•	Select the DataPower Gateway policies to get the Map operation option.  Use the drop down to display and hide this option.
+ 
+NOTE: When you drag an operation from the tool box to the design area, place the operation within the dotted square that appears.
+  
+ 
+
+•	Add an Invoke and a Map operation
+
+ 
+
+•	Click on the map.
+•	Click the Configuration icon to update the Map Title and Description.
+
+ 
+•	Enter the Map’s 
+o	Title – Ex: getPSUniqeInq
+o	Description
+ 
+•	Click Done
+ 
+•	Click the “+input” button to add input information.
+ 
+
+•	Enter appropriate information for the input variables and click “Done”
+ 
+
+•	Click on the “pencil” icon to edit the output information.
+ 
+
+•	Click the “+output” button to add input information.
+•	Use the Definition dropdown to select the “Output” side of the mapping
+a.	Ex. #/definitions/getPSDetailsInput
+•	Click “Done”
+ 
+ 
+•	Map the input to the output by dragging a line from the input to the appropriate output variable
+ 
+
+
+•	Click on the Invoke enter:
+•	Title
+•	Description
+•	URL
+ 
+
+•	When complete it should similar to this
+ 
+•	Drag a “switch” tool and place it AFTER the “invoke”.  This will allow you to return a JSON or other response.
+ 
+
+•	Click on the switch and enter:
+o	Title
+o	Description
+ 
+
+•	Within case 0 click “edit condition” and type the following JAVA code to return JSON
+
+
+
+ 
+
+•	Click Done
+•	Click +Otherwise to handle XML output	
+•	When complete it should look similar to this
+ 
+
+
+ 
+•	Drag a “map” into the JSON output switch.   
+•	Click the Configuration icon to update the Map Title and Description.
+  
+•	For each Input Map enter the Map’s
+a.	Title –Ex getPlanSponsorResponseJSON
+b.	Description
+ 
+•	Click Done
+•	Click the “pencil” button to edit
+ 
+•	Click the “+input” button to add input information.
+•	Enter appropriate information for the input variables and click “Done”
+ 
+ 
+•	Click on the “pencil” icon to edit the output information.
+ 
+•	Click the “+output” button to add input information.
+•	Enter appropriate information for the output variables and click “Done”
+ 
+
+•	Map the input to the output by dragging a line from the input to the appropriate output variable
+ 
+ 
+•	When completed it will look similar to this.
+
+ 
+
+•	Duplicate the Map from the JSON output
+•	Drag it down to the Otherwise area
+•	Modify the Configuration to correct the Title and description
+•	Modify Output to output application/xml
+ 
+
+•	When completed it should look similar to this
+ 
+
+•	Save Changes
+•	Close the API
+•	The IDL should have provided a product name in the naming request
+•	Add a product if a new product is required
+•	Edit the Product information
+•	Publish the API
+15	Clone any API
+•	Log into APIC
+•	Navigate to Drafts screen
+•	Open the API to be Cloned
+ 
+•	Click on the 3 dots(More Actions)
+ 
+•	Select Save as a new version
+ 
+ 
+•	Enter a version number different from the current version number.  Click Save as a new version
+ 
+•	Navigate back to the Drafts screen and open the newly created API.
+ 
+ 
+
+•	Update ALL required fields to reflect on the new operation of the API and Save the API
+ 
+•	New API is now available.
+ 
+ 
+•	The IDL should have provided a product name in the naming request
+•	Add a product if a new product is required
+•	Edit the Product information
+•	Publish the API
+ 
+
+16	API Caching
+ 
+Screen shot from APIC dev portal :
+ 
+
+17	Add/Edit a Product
+Note:  If adding an API to a product will push it over a limit of 15 API's per product, create a new product to contain the API adding an incrementing letter after the gateway value.  Ex.  app-domain-brand-1a-i  
+
+•	Click the Navigate Button
+ 
+•	Click Drafts
+ 
+
+•	Select Products
+ 
+ 
+•	To add an API to and existing Product
+Note:  If adding an API to a product will push it over a limit of 15 API's per product, create a new product to contain the API adding an incrementing letter after the gateway value.  Ex.  app-domain-brand-1a-i  
+•	Search for the product
+ 
+•	Open the product
+•	Click the API’s item and then the “+” to add an API to the product
+ 
+ 
+•	Select the API you need to add by selecting the check mark
+•	Click Apply
+•	Add the Rate Limits as described below.
+ 
+ 
+•	To add to an API to a new Product is needed
+•	The IDL should have provided a product name in the naming request
+•	Click Add
+•	Select New Product
+ 
+
+
+•	Enter information
+ 
+
+•	Click Create product
+ 
+•	Update the IA Product with the API’s rate limits
+•	Select the IA Product to update
+•	Select Default Plan in the left-hand column
+o	There should only be one plan under Plans
+ 
+
+•	Click on Default Plan box to expand it
+ 
+
+
+
+
+
+
+
+
+
+(Expanded view example)
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+•	Always select a rate limit of 1/1/Week
+•	Make sure the Product rate limit is filled in and “Enforce hard limit” is checked.
+•	Scroll down to the API and click the down arrow to display the methods
+ 
+
+
+•	Click on Override rate limit to expose the rate limit area
+ 
+ 
+
+•	Update the value of the rate limit with the number of transactions per hour.   
+o	Note:  setting per hour allows to account for sudden spikes while not being such a large window that users wait if the set limit is reached)
+o	Rate limits should be set based on a three-year projected peak volume plus at least 25% buffer.  Without additional buffer, there is a higher risk of impacting the consumer by rejecting calls under occasional spikes in usage, therefore DO NOT set just to expected peak volume.
+•	Make sure to check “Enforce hard limit”
+ 
+•	Save Changes
+•	Publish API 
+•	This will open the APIC User Guide that is COE authored and maintained.
+•	Navigate to section 5 API Publishing and Application Subscription 
+18	Publish the API
+
+•	Publish API 
+•	This will open the APIC User Guide that is COE authored and maintained.
+•	Navigate to section 5 API Publishing and Application Subscription 
+ 
+19	Backup the API\ Swagger file
+•	Download the swagger file for the API just created 
+ 
+•	Saved to your C drive
+•	Download the Product swagger file
+ 
+•	Save to your C drive
+ 
+•	Start RSA and load the Swagger\Rest Stream depending on the API construction type
+•	For an API created in the Swagger Stream import the API and Product files into the APIC Realizations folder under the correct Domain API project.
+ 
+ 
+ 
+•	For legacy REST stream APIs, Import the files into the Swagger Backups [Domain] folder in the API Management project
+ 
+ 
+ 
+•	Check-in and Deliver
+ 
+20	IA/APIC Design Handoff Process
+•	Once the API has been completed use the following table to communicate the API information to the developers.  This will allow consistent communications.
+•	Copy the table below and paste into an email.(An example is given below)
+•	Add one row for each API supplying the necessary attribute in the table.  No additional information is required.
+•	Email the completed table to the APIC developers. The developers will reach out to IA’s if they have any further questions.
+
+API Name	Application Name	Product Name	Redirect URL (when applicable)	Comments (any specific instructions)
+/v3/aetnahealth_memberships/{id}/messagingstatus	aetnahealth	aetnahealth-ahmdelivery-healthcare-42		
+
